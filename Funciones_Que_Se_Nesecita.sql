@@ -6,3 +6,6 @@ VALUES (1, LAST_INSERT_ID());
 -- Insertar compra (el trigger aplicará el descuento automáticamente)  
 CALL Comp_Produc(1, 1, 2, 50000); -- Precio original: 4500 → Guardará 3600  
 Select * from Produc_Desc;
+
+
+

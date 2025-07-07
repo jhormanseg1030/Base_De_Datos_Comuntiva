@@ -61,3 +61,10 @@ SELECT * FROM Comp_Produc;
 CALL Reembolsos(4500,"El producto llego en mal estado",2,1);
 CALL Reembolsos(3000,"El producto no ah llegado, pero la pagina dice que ya llego",2,2);
 SELECT * FROM Comp_Produc;
+
+
+CALL Calificar_Producto(1, 5, 4,'Buen producto'); /*Este lo que revisa es que el producto te pertenezca*/
+CALL Calificar_Producto(1, 1, 5,'calidad'); 
+SELECT * FROM calificaciones_produc;
+
+CALL Obtener_Reseñas_Producto((SELECT ID_Producto FROM Comp_Produc WHERE ID_Com_Produc = 1), 3);

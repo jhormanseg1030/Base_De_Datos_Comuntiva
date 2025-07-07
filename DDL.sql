@@ -191,6 +191,15 @@ CREATE TABLE Carrito(
     Fecha_Agre TIMESTAMP
 );
 
+Create table calificaciones_produc(
+    ID_Calificaciones INT(10) PRIMARY KEY AUTO_INCREMENT,
+    ID_Comp_Produc INT(10) NOT NULL,
+    ID_Usuario INT(10) NOT NULL,
+    Estrellas TINYINT(1) NOT NULL CHECK (Estrellas BETWEEN 1 AND 5),
+    Comentario TEXT,
+    Fecha_Calificacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /*Foreign Keys*/
 
@@ -359,6 +368,18 @@ FOREIGN KEY (ID_Pedido) REFERENCES Pedidos(ID_Pedido);
  ALTER TABLE Muni
 ADD CONSTRAINT FK_Dep
 FOREIGN KEY (ID_Dep) REFERENCES Dep(ID_Dep);
+
+/*Calificacion productos */
+
+ALTER TABLE calificaciones_produc
+ADD CONSTRAINT fk_calificacion_comp_produc
+FOREIGN KEY (ID_Comp_Produc) REFERENCES Comp_Produc(ID_Com_Produc);
+
+ALTER TABLE calificaciones_produc
+ADD CONSTRAINT fk_calificacion_usuario
+FOREIGN KEY (ID_Usuario) REFERENCES Usuario(ID_Usuario);
+
+
 
 UPDATE `comuctiva`.`Compra` SET `ID_Compra` = '3' WHERE (`ID_Compra` = '4');
 UPDATE `comuctiva`.`Compra` SET `ID_Compra` = '4' WHERE (`ID_Compra` = '5');

@@ -338,4 +338,75 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+
+/*Calificacion producto*/
+
+USE `comuctiva`;
+DROP procedure IF EXISTS `Calificar_Producto`;
+
+DELIMITER $$
+USE `comuctiva`$$
+CREATE PROCEDURE `Calificar_Producto` (
+    IN p_ID_Comp_Produc INT(10),
+    IN p_ID_Usuario INT(10),
+    IN p_Estrellas TINYINT(1),
+    IN p_Comentario TEXT
+)
+BEGIN
+    DECLARE v_pedido_entregado BOOLEAN DEFAULT FALSE;
+    
+    
+    SELECT COUNT(*) > 0 INTO v_pedido_entregado
+    FROM Comp_Produc cp
+    JOIN Compra c ON cp.ID_Compra = c.ID_Compra
+    JOIN Pedidos p ON c.ID_Pedido = p.ID_Pedido
+    WHERE cp.ID_Com_Produc = p_ID_Comp_Produc
+    AND p.ID_Usuario = p_ID_Usuario
+    AND p.ID_Estado = 4;
+    
+    IF v_pedido_entregado THEN
+       
+        INSERT INTO calificaciones_produc (ID_Comp_Produc, ID_Usuario, Estrellas, Comentario)
+        VALUES (p_ID_Comp_Produc, p_ID_Usuario, p_Estrellas, p_Comentario)
+        ON DUPLICATE KEY UPDATE 
+            Estrellas = p_Estrellas,
+            Comentario = p_Comentario,
+            Fecha_Calificacion = CURRENT_TIMESTAMP;
+    ELSE
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Solo puedes calificar productos de pedidos entregados que te pertenezcan';
+    END IF;
+END$$
+
+DELIMITER ;
+
+
+/*Obtener reseña*/
+
+USE `comuctiva`;
+DROP procedure IF EXISTS `Obtener_Reseñas_Producto`;
+
+DELIMITER $$
+USE `comuctiva`$$
+CREATE PROCEDURE `Obtener_Reseñas_Producto`(
+    IN p_ID_Producto INT(10),
+    IN p_Limite INT(10)
+)
+BEGIN
+    SELECT 
+        u.NomUsu AS Nombre_Usuario,
+        cp.Estrellas,
+        cp.Comentario,
+        DATE_FORMAT(cp.Fecha_Calificacion, '%d/%m/%Y %H:%i') AS Fecha_Formateada
+    FROM calificaciones_produc cp
+    JOIN Comp_Produc cpr ON cp.ID_Comp_Produc = cpr.ID_Com_Produc
+    JOIN Usuario u ON cp.ID_Usuario = u.ID_Usuario
+    WHERE cpr.ID_Producto = p_ID_Producto
+    ORDER BY cp.Fecha_Calificacion DESC
+    LIMIT p_Limite;
+END$$
+
+DELIMITER ;
+
 /*-------------------------------------------------------------------------------------------------------------------------------------------*/

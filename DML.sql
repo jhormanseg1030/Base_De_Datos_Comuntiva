@@ -131,3 +131,8 @@ INSERT INTO Muni (ID_Muni,Nom,ID_Dep)VALUES (25843,"UBATE",25);
 
 SELECT NomUsu, Password, CAST(AES_DECRYPT(Password, '1234') AS CHAR) AS Contraseña_Desencriptada
 FROM Usuario;
+
+/*Funcionamiento trigger*/
+INSERT INTO calificaciones_produc (ID_Comp_Produc, ID_Usuario, Estrellas) VALUES (1, 1, 5);
+INSERT INTO calificaciones_produc (ID_Comp_Produc, ID_Usuario, Estrellas) VALUES (1, 2, 4); 
+INSERT INTO calificaciones_produc (ID_Comp_Produc, ID_Usuario, Estrellas) VALUES (1, 2, 6);
