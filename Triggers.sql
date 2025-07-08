@@ -27,7 +27,7 @@ BEGIN
     DECLARE es_propietario BOOLEAN;
     
 
-    IF NEW.Estrellas < 1 OR NEW.Estrellas > 5 THEN
+    IF NEW.Estrellas < 1 OR NEW.Estrellas >= 5 THEN
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'Error: La calificación debe ser entre 1 y 5 estrellas';
     END IF;
