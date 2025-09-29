@@ -1,9 +1,9 @@
 /*Transportadora*/
-USE `comuc`;
+USE `comuctiva`;
 DROP procedure IF EXISTS `Transportadora`;
 
 DELIMITER $$
-USE `comuc`$$
+USE `comuctiva`$$
 CREATE PROCEDURE `Transportadora` (
     IN NombreT VARCHAR (30),
     IN Logo VARCHAR (30),
@@ -21,11 +21,11 @@ DELIMITER ;
 /*-------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 /*Usuario*/
-USE `comuc`;
+USE `comuctiva`;
 DROP procedure IF EXISTS `Usuario`;
 
 DELIMITER $$
-USE `comuc`$$
+USE `comuctiva`$$
 CREATE PROCEDURE `Usuario` (
 IN id_tipdocu TINYINT(3),
 IN num_doc VARCHAR(20),
@@ -46,11 +46,11 @@ DELIMITER ;
 
 /*------------------------------------------------------------------------------------------------------------------------------------------*/
 /*Pedidos*/
-USE `comuc`;
+USE `comuctiva`;
 DROP procedure IF EXISTS `Pedidos`;
 
 DELIMITER $$
-USE `comuc`$$
+USE `comuctiva`$$
 CREATE PROCEDURE `Pedidos` (
 	IN ID_Usuario INT(10),
 	IN Estado VARCHAR(20),
@@ -64,11 +64,11 @@ END$$
 DELIMITER ;
 /*-------------------------------------------------------------------------------------------------------------------------------------------------*/
 /*Compra*/
-USE `comuc`;
+USE `comuctiva`;
 DROP procedure IF EXISTS `Compra`;
 
 DELIMITER $$
-USE `comuc`$$
+USE `comuctiva`$$
 CREATE PROCEDURE `Compra` (
 	IN ID_TiPago INT(10),
 	IN total DECIMAL(10,2),
@@ -83,11 +83,11 @@ END$$
 DELIMITER ;
 /*-------------------------------------------------------------------------------------------------------------------------------------------*/
 /*Producto*/
-USE `comuc`;
+USE `comuctiva`;
 DROP procedure IF EXISTS `Producto`;
 
 DELIMITER $$
-USE `comuc`$$
+USE `comuctiva`$$
 CREATE PROCEDURE `Producto` (
 	IN ID_Medida INT(10),
 	IN NomProd VARCHAR(50),
@@ -105,7 +105,7 @@ END$$
 DELIMITER ;
 /*-------------------------------------------------------------------------------------------------------------------------------------------*/
 /*Reembolsos*/
-USE `comuc`;
+USE `comuctiva`;
 DROP procedure IF EXISTS `Reembolsos`;
 
 DELIMITER $$
@@ -124,28 +124,28 @@ END$$
 DELIMITER ;
 /*-------------------------------------------------------------------------------------------------------------------------------------------*/
 /*Guia de envio*/
-USE `comuc`;
-DROP procedure IF EXISTS `Guia_de_Envio`;
+USE `comuctiva`;
+DROP procedure IF EXISTS `Guia_Envio`;
 
 DELIMITER $$
 USE `comuctiva`$$
-CREATE PROCEDURE `Guia_de_Envio` (	
-	IN ID_Transpor INT (10),
+CREATE PROCEDURE `Guia_Envio` (	
+	IN id_Transpor INT (10),
 	IN Obser VARCHAR(50)
 )
 BEGIN
-	INSERT INTO Guia_de_Envio(ID_Transpor,Fec_Env,ID_Obser)
+	INSERT INTO Guia_Envio(id_Transpor,Fec_Env,ID_Obser)
 	VALUES (ID_Transpor,NOW(),Obser);
 END$$
 
 DELIMITER ;
 /*-------------------------------------------------------------------------------------------------------------------------------------------*/
 /*R_Social*/
-USE `comuc`;
+USE `comuctiva`;
 DROP procedure IF EXISTS `R_Social`;
 
 DELIMITER $$
-USE `comuc`$$
+USE `comuctiva`$$
 CREATE PROCEDURE `R_Social` (
     IN param_ID_R_Social INT(10),  
     IN param_Nombre VARCHAR(50),
@@ -173,11 +173,11 @@ DELIMITER ;
 
 /*-------------------------------------------------------------------------------------------------------------------------------------------*/
 /*Direcciones*/
-USE `comuc`;
+USE `comuctiva`;
 DROP procedure IF EXISTS `Direcciones`;
 
 DELIMITER $$
-USE `comuc`$$
+USE `comuctiva`$$
 CREATE PROCEDURE `Direcciones` (
 	IN ID_Vias INT (10),
     IN num VARCHAR (10),
@@ -194,11 +194,11 @@ END$$
 DELIMITER ;
 /*-------------------------------------------------------------------------------------------------------------------------------------------*/
 /*Barrio*/
-USE `comuc`;
+USE `comuctiva`;
 DROP procedure IF EXISTS `Barrio`;
 
 DELIMITER $$
-USE `comuc`$$
+USE `comuctiva`$$
 CREATE PROCEDURE `Barrio` (
 IN ID_Barr_Vere INT(10),
 IN Nom VARCHAR(50),
@@ -212,11 +212,11 @@ END$$
 DELIMITER ;
 /*-------------------------------------------------------------------------------------------------------------------------------------------*/
 /*Tienda*/
-USE `comuc`;
+USE `comuctiva`;
 DROP procedure IF EXISTS `Tienda`;
 
 DELIMITER $$
-USE `comuc`$$
+USE `comuctiva`$$
 CREATE PROCEDURE `Tienda` (
 	IN ID_Direcc INT(10),
 	IN NomT VARCHAR(50),
@@ -232,11 +232,11 @@ END$$
 DELIMITER ;
 /*-------------------------------------------------------------------------------------------------------------------------------------------*/
 /*Ingres_Produc*/
-USE `comuc`;
+USE `comuctiva`;
 DROP procedure IF EXISTS `Ingres_Produc`;
 
 DELIMITER $$
-USE `comuc`$$
+USE `comuctiva`$$
 CREATE PROCEDURE `Ingres_Produc` (
 	IN ID_Producto INT(10),
 	IN ID_Ingreso INT(10),
@@ -250,11 +250,11 @@ END$$
 DELIMITER ;
 /*-------------------------------------------------------------------------------------------------------------------------------------------*/
 /*Pedi_Produc*/
-USE `comuc`;
+USE `comuctiva`;
 DROP procedure IF EXISTS `Pedi_Produc`;
 
 DELIMITER $$
-USE `comuc`$$
+USE `comuctiva`$$
 CREATE PROCEDURE `Pedi_Produc` (
 	IN ID_Producto INT(10),
 	IN ID_Pedido INT(10),
@@ -269,11 +269,11 @@ END$$
 DELIMITER ;
 /*-------------------------------------------------------------------------------------------------------------------------------------------*/
 /*Comp_Produc*/
-USE `comuc`;
+USE `comuctiva`;
 DROP procedure IF EXISTS `Comp_Produc`;
 
 DELIMITER $$
-USE `comuc`$$
+USE `comuctiva`$$
 CREATE PROCEDURE `Comp_Produc` (
 	IN ID_Compra INT,
     IN ID_Producto INT,
@@ -288,11 +288,11 @@ END$$
 DELIMITER ;
 /*-------------------------------------------------------------------------------------------------------------------------------------------*/
 /*Ingresos*/
-USE `comuc`;
+USE `comuctiva`;
 DROP procedure IF EXISTS `Ingresos`;
 
 DELIMITER $$
-USE `comuc`$$
+USE `comuctiva`$$
 CREATE PROCEDURE `Ingresos` (
 	IN ID_Usuario INT (10),
     IN Obser VARCHAR (50)
@@ -305,11 +305,11 @@ END$$
 DELIMITER ;
 /*-------------------------------------------------------------------------------------------------------------------------------------------*/
 /*Carrito*/
-USE `comuc`;
+USE `comuctiva`;
 DROP procedure IF EXISTS `Carrito`;
 
 DELIMITER $$
-USE `comuc`$$
+USE `comuctiva`$$
 CREATE PROCEDURE `Carrito` (
 	IN ID_Usuario INT (10),
 	IN ID_Producto INT (10),
@@ -323,11 +323,11 @@ END$$
 DELIMITER ;
 /*-------------------------------------------------------------------------------------------------------------------------------------------*/
 /*Descuentos*/
-USE `comuc`;
+USE `comuctiva`;
 DROP procedure IF EXISTS `Descuentos`;
 
 DELIMITER $$
-USE `comuc`$$
+USE `comuctiva`$$
 CREATE PROCEDURE `Descuentos` (
 	Descripcion VARCHAR (50),
     Valor DECIMAL (10,2)
@@ -342,11 +342,11 @@ DELIMITER ;
 
 /*Calificacion producto*/
 
-USE `comuc`;
+USE `comuctiva`;
 DROP procedure IF EXISTS `Calificar_Producto`;
 
 DELIMITER $$
-USE `comuc`$$
+USE `comuctiva`$$
 CREATE PROCEDURE `Calificar_Producto` (
     IN p_ID_Comp_Produc INT(10),
     IN p_ID_Usuario INT(10),
@@ -384,11 +384,11 @@ DELIMITER ;
 
 /*Obtener reseña*/
 
-USE `comuc`;
+USE `comuctiva`;
 DROP procedure IF EXISTS `Obtener_Reseñas_Producto`;
 
 DELIMITER $$
-USE `comuc`$$
+USE `comuctiva`$$
 CREATE PROCEDURE `Obtener_Reseñas_Producto`(
     IN p_ID_Producto INT(10),
     IN p_Limite INT(10)

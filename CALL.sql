@@ -1,7 +1,4 @@
-CALL Usuario ("Luisa","Fernanda","Ramoz","3156578900","3103746678",1,"Luisafernanda225@gmail.com","5207267708","1234");
-CALL Usuario ("Juan","Camilo","Chon","3118905612","3128110025",4,"Juancamilo546@gmail.com","10124658905","678909");
-CALL Usuario ("Brandon","Ramirez","Patiño","3108117232","3158990043",1,"Brandonramirez@gmail.com","10114567823","476589");
-CALL Usuario ("Maria","Talero","Castelblanco","3136451239","3107348097",2,"Mariatalero@gmail.com","10114567823","67436798");
+Call Usuario(4,"10114567823","3136451239","3107348097","Talero","Castelblanco","Mariatalero@gmail.com","Maria","67436798");
 select *from Usuario;
 
 CALL Transportadora('servientrega', 'fedex', '123456789', 'contacto@servientrega.com', 'Calle 123', 'www.servientrega.com');
@@ -12,13 +9,13 @@ CALL Transportadora('servientrega', 'fedex', '121212121', 'contacto@servientrega
 CALL Transportadora('servientrega', 'fedex', '018005005', 'contacto@servientrega.com', 'Calle 215', 'www.servientrega.com');
 SELECT * FROM Transportadora;
 
-CALL Guia_de_Envio(1,1);
-CALL Guia_de_Envio(2,2);
-CALL Guia_de_Envio(1,3);
-CALL Guia_de_Envio(1,4);
-CALL Guia_de_Envio(1,5);
-CALL Guia_de_Envio(1,2);
-SELECT * FROM Guia_de_Envio;  
+CALL Guia_Envio(1,1);
+CALL Guia_Envio(2,2);
+CALL Guia_Envio(1,3);
+CALL Guia_Envio(1,4);
+CALL Guia_Envio(1,5);
+CALL Guia_Envio(1,2);
+SELECT * FROM Guia_Envio;  
 
 CALL Pedidos(1,2,3);
 CALL Pedidos(2,1,1);
