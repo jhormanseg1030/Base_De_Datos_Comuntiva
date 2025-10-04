@@ -27,6 +27,7 @@ DROP procedure IF EXISTS `Usuario`;
 DELIMITER $$
 USE `comuctiva`$$
 CREATE PROCEDURE `Usuario` (
+IN nom_usu VARCHAR(50),
 IN id_tipdocu TINYINT(3),
 IN num_doc VARCHAR(20),
 IN tel NUMERIC(20),
@@ -34,12 +35,11 @@ IN tel2 NUMERIC(20),
 IN apell1 VARCHAR (50),
 IN apell2 VARCHAR(50),
 IN correo VARCHAR(50),
-IN nom_usu VARCHAR(50),
 IN password VARCHAR(500)
 )
 BEGIN
-	INSERT INTO Usuario (id_tipdocu,num_doc,tel,tel2,apell1,apell2,correo,nom_usu,Password)
-	VALUES (id_tipdocu,num_doc,tel,tel2,apell1,apell2,correo,nom_usu,AES_ENCRYPT(password,'1234'));
+	INSERT INTO Usuario (nom_usu,id_tipdocu,num_doc,tel,tel2,apell1,apell2,correo,Password)
+	VALUES (nom_usu,id_tipdocu,num_doc,tel,tel2,apell1,apell2,correo,AES_ENCRYPT(password,'1234'));
 END$$
 
 DELIMITER ;
@@ -52,13 +52,13 @@ DROP procedure IF EXISTS `Pedidos`;
 DELIMITER $$
 USE `comuctiva`$$
 CREATE PROCEDURE `Pedidos` (
-	IN ID_Usuario INT(10),
-	IN Estado VARCHAR(20),
-	IN ID_Guia INT(10)
+	IN id_usuario INT(10),
+	IN id_estado VARCHAR(20),
+	IN id_guia INT(10)
 )
 BEGIN
-	INSERT INTO Pedidos (ID_Usuario,FeHor_Ped,ID_Estado,ID_Guia)
-	VALUES (ID_Usuario,NOW(),Estado,ID_Guia);
+	INSERT INTO Pedidos (id_usuario,fehor_pedi,id_estado,id_guia)
+	VALUES (id_usuario,NOW(),id_estado,id_guia);
 END$$
 
 DELIMITER ;
@@ -70,14 +70,14 @@ DROP procedure IF EXISTS `Compra`;
 DELIMITER $$
 USE `comuctiva`$$
 CREATE PROCEDURE `Compra` (
-	IN ID_TiPago INT(10),
-	IN total DECIMAL(10,2),
-	IN Ref_Pago VARCHAR(30),
-	IN ID_Pedido INT(10)
+	IN id_ti_pago INT(10),
+	IN total DOUBLE,
+	IN ref_pago VARCHAR(30),
+	IN id_pedido INT(10)
 )
 BEGIN
-	INSERT INTO Compra(ID_TiPago,total,Ref_Pago,Fec_com,ID_Pedido)
-	VALUES (ID_TiPago,total,Ref_Pago,NOW(),ID_Pedido);
+	INSERT INTO Compra(id_ti_pago,total,ref_pago,Fec_com,id_pedido)
+	VALUES (id_ti_pago,total,ref_pago,NOW(),id_pedido);
 END$$
 
 DELIMITER ;
@@ -111,14 +111,14 @@ DROP procedure IF EXISTS `Reembolsos`;
 DELIMITER $$
 USE `comuctiva`$$
 CREATE PROCEDURE `Reembolsos` (
-	IN Valor NUMERIC(20,2),
-	IN Motivo VARCHAR(100),
-	IN Estado VARCHAR(20),
-	IN ID_Com_Produc INT(10)
+	IN estado VARCHAR(20),
+    IN motivo VARCHAR(100),
+    IN valor NUMERIC(20,2),
+	IN id_compra INT(10)
 )
 BEGIN
-	INSERT INTO Reembolsos(Fec_Soli,Valor,Motivo,Fec_Resp,Estado,ID_Com_Produc)
-	VALUES (NOW(),Valor,Motivo,NOW(),Estado,ID_Com_Produc);
+	INSERT INTO Reembolsos(estado,fec_resp,fec_soli,motivo,valor,id_compra)
+	VALUES (estado,NOW(),NOW(),motivo,valor,id_compra);
 END$$
 
 DELIMITER ;
@@ -139,37 +139,6 @@ BEGIN
 END$$
 
 DELIMITER ;
-/*-------------------------------------------------------------------------------------------------------------------------------------------*/
-/*R_Social*/
-USE `comuctiva`;
-DROP procedure IF EXISTS `R_Social`;
-
-DELIMITER $$
-USE `comuctiva`$$
-CREATE PROCEDURE `R_Social` (
-    IN param_ID_R_Social INT(10),  
-    IN param_Nombre VARCHAR(50),
-    IN param_NIT VARCHAR(20),
-    IN param_Sucur VARCHAR(50),
-    IN param_ID_Usuario INT(10)
-
-)
-BEGIN
-    UPDATE R_Social 
-    SET Nombre = param_Nombre,
-        NIT = param_NIT,
-        Sucur = param_Sucur,
-        ID_Usuario = param_ID_Usuario
-    WHERE ID_R_Social = param_ID_R_Social;
-    
-  
-    IF ROW_COUNT() = 0 THEN
-        INSERT INTO R_Social(ID_R_Social, Nombre, NIT, Sucur, ID_Usuario)
-        VALUES (param_ID_R_Social, param_Nombre, param_NIT, param_Sucur, param_ID_Usuario);
-	END IF;
-END$$
-
-DELIMITER ;
 
 /*-------------------------------------------------------------------------------------------------------------------------------------------*/
 /*Direcciones*/
@@ -183,12 +152,12 @@ CREATE PROCEDURE `Direcciones` (
     IN num VARCHAR (10),
     IN comple VARCHAR (50),
     IN Ubi_Geo VARCHAR (20),
-    IN ID_Usuario INT (10),
-    IN ID_Barrio INT (10)
+    IN id_usuario INT (10),
+    IN id_barrio INT (10)
 )
 BEGIN
-	INSERT INTO Direcciones (ID_Vias,num,comple,Ubi_Geo,ID_Usuario,ID_Barrio)
-    VALUES (ID_Vias,num,comple,Ubi_Geo,ID_Usuario,ID_Barrio);
+	INSERT INTO Direcciones (ID_Vias,num,comple,Ubi_Geo,id_usuario,id_barrio)
+    VALUES (ID_Vias,num,comple,Ubi_Geo,id_usuario,id_barrio);
 END$$
 
 DELIMITER ;
@@ -202,11 +171,11 @@ USE `comuctiva`$$
 CREATE PROCEDURE `Barrio` (
 IN ID_Barr_Vere INT(10),
 IN Nom VARCHAR(50),
-IN ID_Muni INT(10)
+IN id_muni INT(10)
 )
 BEGIN
-	INSERT INTO Barrio(ID_Barr_Vere,Nom,ID_Muni)
-	VALUES (ID_Barr_Vere,Nom,ID_Muni);
+	INSERT INTO Barrio(ID_Barr_Vere,Nom,id_muni)
+	VALUES (ID_Barr_Vere,Nom,id_muni);
 END$$
 
 DELIMITER ;
@@ -218,15 +187,13 @@ DROP procedure IF EXISTS `Tienda`;
 DELIMITER $$
 USE `comuctiva`$$
 CREATE PROCEDURE `Tienda` (
-	IN ID_Direcc INT(10),
-	IN NomT VARCHAR(50),
-	IN Logo VARCHAR(50),
-	IN ID_Usuario INT(10),
-	IN ID_R_Social INT(10)
+	IN id_direcc INT(10),
+	IN nombret VARCHAR(50),
+	IN log VARCHAR(50)
 )
 BEGIN
-	INSERT INTO Tienda(ID_Direcc,NomT,Logo,ID_Usuario,ID_R_Social)
-	VALUES (ID_Direcc,NomT,Logo,ID_Usuario,ID_R_Social);
+	INSERT INTO Tienda(id_direcc,nombret,log)
+	VALUES (id_direcc,nombret,log);
 END$$
 
 DELIMITER ;
@@ -275,14 +242,14 @@ DROP procedure IF EXISTS `Comp_Produc`;
 DELIMITER $$
 USE `comuctiva`$$
 CREATE PROCEDURE `Comp_Produc` (
-	IN ID_Compra INT,
-    IN ID_Producto INT,
-    IN Cant NUMERIC (19,2),
-    IN Valor DECIMAL (10,2)
+	IN compra_id INT,
+    IN producto_id INT,
+    IN cant NUMERIC (19,2),
+    IN valor DECIMAL (10,2)
 )
 BEGIN
-	INSERT INTO Comp_Produc (ID_Compra,ID_Producto,Cant,Valor)
-    VALUES (ID_Compra,ID_Producto,Cant,Valor);
+	INSERT INTO Comp_Produc (compra_id,producto_id,cant,fecha_asignacion,valor)
+    VALUES (compra_id,producto_id,cant,NOW(),valor);
 END$$
 
 DELIMITER ;
@@ -338,8 +305,7 @@ BEGIN
 END$$
 
 DELIMITER ;
-
-
+/*-------------------------------------------------------------------------------------------------------------------------------------------*/
 /*Calificacion producto*/
 
 USE `comuctiva`;
@@ -348,31 +314,32 @@ DROP procedure IF EXISTS `Calificar_Producto`;
 DELIMITER $$
 USE `comuctiva`$$
 CREATE PROCEDURE `Calificar_Producto` (
-    IN p_ID_Comp_Produc INT(10),
-    IN p_ID_Usuario INT(10),
-    IN p_Estrellas TINYINT(1),
-    IN p_Comentario TEXT
+    IN p_id_producto INT(10),
+    IN p_id_usuario INT(10),
+    IN p_estrellas TINYINT(1),
+    IN p_comentario VARCHAR(50)
 )
 BEGIN
+   /*verificar si el producto fue entregado al usuario*/ 
     DECLARE v_pedido_entregado BOOLEAN DEFAULT FALSE;
     
-    
+    /*verifica si el producto pertenece a un pedido entregado y si el pedido corresponde al usuario que esta calificando*/
     SELECT COUNT(*) > 0 INTO v_pedido_entregado
-    FROM Comp_Produc cp
-    JOIN Compra c ON cp.ID_Compra = c.ID_Compra
-    JOIN Pedidos p ON c.ID_Pedido = p.ID_Pedido
-    WHERE cp.ID_Com_Produc = p_ID_Comp_Produc
-    AND p.ID_Usuario = p_ID_Usuario
-    AND p.ID_Estado = 4;
+    FROM pedi_produc pp
+    JOIN pedidos p ON pp.pedidos_id = p.id_pedido
+    WHERE pp.producto_id = p_id_producto
+    AND p.id_usuario = p_id_usuario
+    AND p.id_estado = 4;
+    
     
     IF v_pedido_entregado THEN
-       
-        INSERT INTO calificaciones_produc (ID_Comp_Produc, ID_Usuario, Estrellas, Comentario)
-        VALUES (p_ID_Comp_Produc, p_ID_Usuario, p_Estrellas, p_Comentario)
+       /*Si el pedido fue entregado, se ejecuta:*/
+        INSERT INTO calificaciones_produc (id_producto, id_usuario, estrellas, comentario, fecha_calificacion)
+        VALUES (p_id_producto, p_id_usuario, p_estrellas, p_comentario, CURRENT_TIMESTAMP)
         ON DUPLICATE KEY UPDATE 
-            Estrellas = p_Estrellas,
-            Comentario = p_Comentario,
-            Fecha_Calificacion = CURRENT_TIMESTAMP;
+            estrellas = p_estrellas,
+            comentario = p_comentario,
+            fecha_calificacion = CURRENT_TIMESTAMP;
     ELSE
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'Solo puedes calificar productos de pedidos entregados que te pertenezcan';
@@ -380,8 +347,7 @@ BEGIN
 END$$
 
 DELIMITER ;
-
-
+/*-------------------------------------------------------------------------------------------------------------------------------------------*/
 /*Obtener reseña*/
 
 USE `comuctiva`;
@@ -408,5 +374,3 @@ BEGIN
 END$$
 
 DELIMITER ;
-
-/*-------------------------------------------------------------------------------------------------------------------------------------------*/

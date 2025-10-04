@@ -6,12 +6,14 @@ INSERT INTO Tipo_De_Pago (Tipos) VALUES ("Tarjeta de Credito"),("Tarjeta de Debi
 INSERT INTO Barr_Vere (Nombre) VALUES ("Barrio"),("Vereda"),("Sector");
 INSERT INTO Estado (estado) VALUES ("En espera"),("En proceso"),("Enviado"),("Entregado"),("Cancelado"),("Cerrado"),("Devuelto");
 INSERT INTO Obser (Obser) VALUES ("Delicado"),("Peligro"),("Fragil"),("Ligero"),("Pesado");
+INSERT INTO pedi_produc (cant, valor, producto_id, pedidos_id) VALUES (1, 5000, 2, 2);
+select * from pedi_produc;
 
-/*Departamentos :D*/
+/*Departamentos*/
 INSERT INTO departamento (id_Dep,Nom_Dep) VALUES (11,"Bogotá, D.C.");
 INSERT INTO departamento (id_Dep,Nom_Dep) VALUES (25,"Cundinamarca");
 
-/*Muni :D*/
+/*Municipios*/
 INSERT INTO Muni (id_muni,nom,id_Dep)VALUES (25162,"CHIA",25);
 INSERT INTO Muni (id_muni,nom,id_Dep)VALUES (25200,"COTA",25);
 INSERT INTO Muni (id_muni,nom,id_Dep)VALUES (25758,"SOPÓ",25);
@@ -28,7 +30,6 @@ INSERT INTO Muni (id_muni,nom,id_Dep)VALUES (25791,"SUBACHOQUE",25);
 INSERT INTO Muni (id_muni,nom,id_Dep)VALUES (25740,"SIBATÉ",25);
 INSERT INTO Muni (id_muni,nom,id_Dep)VALUES (25756,"SOACHA",25);
 
-
-/*
-SELECT NomUsu, Password, CAST(AES_DECRYPT(Password, '1234') AS CHAR) AS Contraseña_Desencriptada
+/*Desencriptar contraseña*/
+/*SELECT NomUsu, Password, CAST(AES_DECRYPT(Password, '1234') AS CHAR) AS Contraseña_Desencriptada
 FROM Usuario;*/
