@@ -1,5 +1,5 @@
 /*Transportadora*/
-USE `comuctiva`;
+USE `co`;
 DROP procedure IF EXISTS `Transportadora`;
 
 DELIMITER $$

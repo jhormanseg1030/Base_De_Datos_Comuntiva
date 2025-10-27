@@ -280,7 +280,7 @@ ADD CONSTRAINT FK_Unidad
 FOREIGN KEY (ID_Medida) REFERENCES Unidad_Medida(ID_Medida);
 
 ALTER TABLE Producto
-ADD CONSTRAINT FK_Tienda
+ADD CONSTRAINT FK_Tiendaproducto
 FOREIGN KEY (ID_Tienda) REFERENCES Tienda(ID_Tienda);
 
 /*Ingresos*/
