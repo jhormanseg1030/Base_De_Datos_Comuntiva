@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-10-2025 a las 23:52:36
+-- Tiempo de generación: 29-10-2025 a las 22:50:06
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -577,25 +577,7 @@ CREATE TABLE `rol` (
 
 INSERT INTO `rol` (`Id_Rol`, `Nom_Rol`) VALUES
 (1, 'Cliente'),
-(2, 'Administrador'),
-(3, 'Administrador'),
-(4, 'Cliente'),
-(5, 'Administrador'),
-(6, 'Cliente'),
-(7, 'Administrador'),
-(8, 'Cliente'),
-(9, 'Administrador'),
-(10, 'Cliente'),
-(11, 'Administrador'),
-(12, 'Cliente'),
-(13, 'Administrador'),
-(14, 'Cliente'),
-(15, 'Administrador'),
-(16, 'Cliente'),
-(17, 'Administrador'),
-(18, 'Cliente'),
-(19, 'Administrador'),
-(20, 'Cliente');
+(2, 'Administrador');
 
 -- --------------------------------------------------------
 
@@ -619,7 +601,8 @@ INSERT INTO `rol_usuario` (`ID_Rol`, `ID_Usuario`, `estado`) VALUES
 (1, 4, b'1'),
 (1, 5, b'1'),
 (1, 6, b'1'),
-(1, 7, b'1');
+(1, 7, b'1'),
+(2, 1, b'1');
 
 -- --------------------------------------------------------
 
@@ -741,8 +724,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`ID_Usuario`, `NomUsu`, `apell1`, `apell2`, `tel1`, `tel2`, `ID_TipDocu`, `correo`, `NumDoc`, `password`, `nom_usu`, `num_doc`, `tel`) VALUES
-(1, 'Admin', 'Sistema', 'Principal', 3001111111, 3009999999, 1, 'admin@comuctiva.com', '22222222', '$2a$10$HG8NhBhftRL3.JL9LglU7uyul5KT2Bu7q7wsXv739rWUfKVZtF38u', NULL, NULL, NULL),
-(2, 'Ana', 'Rodr??guez', 'S??nchez', 3004444444, 3006666666, 1, 'ana@cliente.com', '55555555', '$2a$10$rZvqmF5Y5kF6x2ZMRZoMyeIVI1lrPn9R6y4KW4ZP1ybYHYwXpGQa', NULL, NULL, NULL),
+(1, 'Admin', 'Sistema', 'Principal', 3001111111, 3009999999, 1, 'admin@comuctiva.com', '22222222', '$2a$10$6SQFDsaGWz0MVH9D56E8T.5kOIEJ4P6giVBdQO9wAagae/GhY5QpG', NULL, NULL, NULL),
+(2, 'Ana', 'Rodr??guez', 'S??nchez', 3004444444, 3006666666, 1, 'ana@cliente.com', '55555555', '$2a$10$HvAot2lgMQVYzTCySPBk2OeXlHXGWsZIgIlYd1PO2PcXYX3u1OmGm', NULL, NULL, NULL),
 (3, 'Pedro', 'L??pez', 'Gonz??lez', 3005555555, 3005555555, 1, 'pedro@cliente.com', '66666666', '$2a$10$rZvqmF5Y5kF6x2ZMRZoMyeIVI1lrPn9R6y4KW4ZP1ybYHYwXpGQa', NULL, NULL, NULL),
 (4, 'Laura', 'Fern??ndez', 'Torres', 3006666666, 3004444444, 1, 'laura@cliente.com', '77777777', '$2a$10$rZvqmF5Y5kF6x2ZMRZoMyeIVI1lrPn9R6y4KW4ZP1ybYHYwXpGQa', NULL, NULL, NULL),
 (5, 'Juan', 'P??rez', 'G??mez', 3007777777, 3003333333, 1, 'juan@cliente.com', '11111111', '$2a$10$rZvqmF5Y5kF6x2ZMRZoMyeIVI1lrPn9R6y4KW4ZP1ybYHYwXpGQa', NULL, NULL, NULL),
@@ -1130,7 +1113,7 @@ ALTER TABLE `unidad_medida`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `ID_Usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `ID_Usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `vias`
@@ -1205,65 +1188,10 @@ ALTER TABLE `ingresos`
   ADD CONSTRAINT `FK_Usuar` FOREIGN KEY (`ID_Usuario`) REFERENCES `usuario` (`ID_Usuario`);
 
 --
--- Filtros para la tabla `ingres_produc`
---
-ALTER TABLE `ingres_produc`
-  ADD CONSTRAINT `FK_Ingreso` FOREIGN KEY (`ID_Ingreso`) REFERENCES `ingresos` (`ID_Ingreso`),
-  ADD CONSTRAINT `FK_Productos` FOREIGN KEY (`ID_Producto`) REFERENCES `producto` (`ID_Producto`);
-
---
 -- Filtros para la tabla `muni`
 --
 ALTER TABLE `muni`
   ADD CONSTRAINT `FK_Dep` FOREIGN KEY (`ID_Dep`) REFERENCES `dep` (`ID_Dep`);
-
---
--- Filtros para la tabla `pedidos`
---
-ALTER TABLE `pedidos`
-  ADD CONSTRAINT `FK_Estado` FOREIGN KEY (`ID_Estado`) REFERENCES `estado` (`ID_Estado`),
-  ADD CONSTRAINT `FK_Guia_de_Envio` FOREIGN KEY (`ID_Guia`) REFERENCES `guia_de_envio` (`ID_Guia`),
-  ADD CONSTRAINT `FK_Usuario` FOREIGN KEY (`ID_Usuario`) REFERENCES `usuario` (`ID_Usuario`);
-
---
--- Filtros para la tabla `pedi_produc`
---
-ALTER TABLE `pedi_produc`
-  ADD CONSTRAINT `FK_Pedi` FOREIGN KEY (`ID_Pedido`) REFERENCES `pedidos` (`ID_Pedido`),
-  ADD CONSTRAINT `FK_Prod` FOREIGN KEY (`ID_Producto`) REFERENCES `producto` (`ID_Producto`);
-
---
--- Filtros para la tabla `producto`
---
-ALTER TABLE `producto`
-  ADD CONSTRAINT `FK_Unidad_Medida` FOREIGN KEY (`ID_Medida`) REFERENCES `unidad_medida` (`Id_Medida`);
-
---
--- Filtros para la tabla `produc_carri`
---
-ALTER TABLE `produc_carri`
-  ADD CONSTRAINT `FK_producto_carrito` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`ID_Producto`),
-  ADD CONSTRAINT `FK_producto_carritos` FOREIGN KEY (`carrito_id`) REFERENCES `carrito` (`ID_Carrito`);
-
---
--- Filtros para la tabla `produc_desc`
---
-ALTER TABLE `produc_desc`
-  ADD CONSTRAINT `FK_Descuent` FOREIGN KEY (`ID_Descu`) REFERENCES `descuentos` (`ID_Descu`),
-  ADD CONSTRAINT `FK_Produc` FOREIGN KEY (`ID_Producto`) REFERENCES `producto` (`ID_Producto`);
-
---
--- Filtros para la tabla `rol_usuario`
---
-ALTER TABLE `rol_usuario`
-  ADD CONSTRAINT `FK_Usuarios` FOREIGN KEY (`ID_Usuario`) REFERENCES `usuario` (`ID_Usuario`),
-  ADD CONSTRAINT `FK_rol` FOREIGN KEY (`ID_Rol`) REFERENCES `rol` (`Id_Rol`);
-
---
--- Filtros para la tabla `usuario`
---
-ALTER TABLE `usuario`
-  ADD CONSTRAINT `FK_Tip_Doc` FOREIGN KEY (`ID_TipDocu`) REFERENCES `tip_doc` (`ID_TipDocu`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
