@@ -76,7 +76,6 @@ INSERT INTO `barr_vere` (`ID_Barr_Vere`, `Nombre`) VALUES
 CREATE TABLE `carrito` (
   `ID_Carrito` int(10) NOT NULL,
   `ID_Usuario` int(11) NOT NULL,
-  `ID_Producto` int(11) NOT NULL,
   `cantidad` varchar(10) DEFAULT NULL,
   `Fecha_Agre` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -85,12 +84,12 @@ CREATE TABLE `carrito` (
 -- Volcado de datos para la tabla `carrito`
 --
 
-INSERT INTO `carrito` (`ID_Carrito`, `ID_Usuario`, `ID_Producto`, `cantidad`, `Fecha_Agre`) VALUES
-(1, 4, 1, '3', '2025-10-26 20:30:00'),
-(2, 4, 7, '5', '2025-10-26 20:32:00'),
-(3, 5, 8, '10', '2025-10-27 15:00:00'),
-(4, 5, 9, '2', '2025-10-27 15:05:00'),
-(5, 5, 3, '5', '2025-10-27 15:10:00');
+INSERT INTO `carrito` (`ID_Carrito`, `ID_Usuario`, `cantidad`, `Fecha_Agre`) VALUES
+(1, 4, '3', '2025-10-26 20:30:00'),
+(2, 4, '5', '2025-10-26 20:32:00'),
+(3, 5, '10', '2025-10-27 15:00:00'),
+(4, 5, '2', '2025-10-27 15:05:00'),
+(5, 5, '5', '2025-10-27 15:10:00');
 
 -- --------------------------------------------------------
 
@@ -128,7 +127,7 @@ INSERT INTO `comentarios` (`ID_Comentario`, `ID_Comp_Produc`, `ID_Usuario`, `Com
 --
 
 CREATE TABLE `compra` (
-  `ID_Compra` int(10) NOT NULL,
+  `Id_Compra` int(10) NOT NULL,
   `ID_TiPago` int(10) DEFAULT NULL,
   `total` double DEFAULT NULL,
   `Ref_Pago` varchar(30) NOT NULL,
@@ -141,7 +140,7 @@ CREATE TABLE `compra` (
 -- Volcado de datos para la tabla `compra`
 --
 
-INSERT INTO `compra` (`ID_Compra`, `ID_TiPago`, `total`, `Ref_Pago`, `Fec_com`, `ID_Pedido`, `id_ti_pago`) VALUES
+INSERT INTO `compra` (`Id_Compra`, `ID_TiPago`, `total`, `Ref_Pago`, `Fec_com`, `ID_Pedido`, `id_ti_pago`) VALUES
 (1, 6, 28500, 'NEQ-20251020-001', '2025-10-20 08:05:00', 1, 0),
 (2, 3, 160000, 'PSE-20251021-002', '2025-10-21 08:35:00', 2, 0),
 (3, 1, 66000, 'TC-20251022-003', '2025-10-22 09:05:00', 3, 0),
@@ -778,8 +777,7 @@ ALTER TABLE `barr_vere`
 --
 ALTER TABLE `carrito`
   ADD PRIMARY KEY (`ID_Carrito`),
-  ADD KEY `FK_Carrito_Usuario` (`ID_Usuario`),
-  ADD KEY `FK_Carrito_Producto` (`ID_Producto`);
+  ADD KEY `FK_Carrito_Usuario` (`ID_Usuario`);
 
 --
 -- Indices de la tabla `comentarios`
@@ -1136,7 +1134,6 @@ ALTER TABLE `barrio`
 -- Filtros para la tabla `carrito`
 --
 ALTER TABLE `carrito`
-  ADD CONSTRAINT `FK_Carrito_Producto` FOREIGN KEY (`ID_Producto`) REFERENCES `producto` (`ID_Producto`),
   ADD CONSTRAINT `FK_Carrito_Usuario` FOREIGN KEY (`ID_Usuario`) REFERENCES `usuario` (`ID_Usuario`);
 
 --
