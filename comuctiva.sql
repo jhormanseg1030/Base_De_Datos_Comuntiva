@@ -85,11 +85,11 @@ CREATE TABLE `carrito` (
 --
 
 INSERT INTO `carrito` (`ID_Carrito`, `ID_Usuario`, `cantidad`, `Fecha_Agre`) VALUES
-(1, 4, '3', '2025-10-26 20:30:00'),
-(2, 4, '5', '2025-10-26 20:32:00'),
-(3, 5, '10', '2025-10-27 15:00:00'),
-(4, 5, '2', '2025-10-27 15:05:00'),
-(5, 5, '5', '2025-10-27 15:10:00');
+(1, 8, '3', '2025-10-26 20:30:00'),
+(2, 8, '5', '2025-10-26 20:32:00'),
+(3, 9, '10', '2025-10-27 15:00:00'),
+(4, 9, '2', '2025-10-27 15:05:00'),
+(5, 10, '5', '2025-10-27 15:10:00');
 
 -- --------------------------------------------------------
 
@@ -112,13 +112,13 @@ CREATE TABLE `comentarios` (
 --
 
 INSERT INTO `comentarios` (`ID_Comentario`, `ID_Comp_Produc`, `ID_Usuario`, `Comentario`, `Fecha_Comentario`, `id_compra`, `id_producto`) VALUES
-(1, 1, 2, 'Excelente calidad, tomates muy frescos. Los recomiendo totalmente.', '2025-10-28 20:40:52', 0, 0),
-(2, 2, 2, 'La cebolla lleg?? en buen estado, aunque esperaba que fuera un poco m??s grande.', '2025-10-28 20:40:52', 0, 0),
-(3, 3, 2, 'Las lechugas estaban perfectas, muy frescas y crujientes.', '2025-10-28 20:40:52', 0, 0),
-(4, 4, 3, 'Frijol de muy buena calidad, bien limpio y sin piedras. Definitivamente volver?? a comprar.', '2025-10-28 20:40:52', 0, 0),
-(5, 5, 3, 'El arroz es de buena calidad, aunque el precio me pareci?? un poco elevado.', '2025-10-28 20:40:52', 0, 0),
-(6, 6, 4, 'Las papas criollas est??n deliciosas, ideales para fre??r.', '2025-10-28 20:40:52', 0, 0),
-(7, 7, 4, 'Zanahorias frescas y dulces, perfectas para ensaladas.', '2025-10-28 20:40:52', 0, 0);
+(1, 1, 8, 'Excelente calidad, tomates muy frescos. Los recomiendo totalmente.', '2025-10-28 20:40:52', 0, 0),
+(2, 2, 8, 'La cebolla lleg?? en buen estado, aunque esperaba que fuera un poco m??s grande.', '2025-10-28 20:40:52', 0, 0),
+(3, 3, 8, 'Las lechugas estaban perfectas, muy frescas y crujientes.', '2025-10-28 20:40:52', 0, 0),
+(4, 4, 9, 'Frijol de muy buena calidad, bien limpio y sin piedras. Definitivamente volver?? a comprar.', '2025-10-28 20:40:52', 0, 0),
+(5, 5, 9, 'El arroz es de buena calidad, aunque el precio me pareci?? un poco elevado.', '2025-10-28 20:40:52', 0, 0),
+(6, 6, 10, 'Las papas criollas est??n deliciosas, ideales para fre??r.', '2025-10-28 20:40:52', 0, 0),
+(7, 7, 10, 'Zanahorias frescas y dulces, perfectas para ensaladas.', '2025-10-28 20:40:52', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -265,12 +265,12 @@ CREATE TABLE `direcciones` (
 --
 
 INSERT INTO `direcciones` (`ID_Direcc`, `ID_Vias`, `num`, `comple`, `Ubi_Geo`, `ID_Usuario`, `ID_Barrio`) VALUES
-(1, 2, '45', '23-15 Apto 501', '4.7110,-74.0721', 2, 1),
-(2, 1, '72', '10-34 Casa 3', '4.8580,-74.0375', 3, 2),
-(3, 3, '127', '45-67 Local 2', '4.9250,-74.0315', 4, 3),
-(4, 2, '80', '12-45', '4.9180,-74.0307', 5, 4),
-(5, 1, '50', '23-10', '4.9190,-74.0350', 6, 5),
-(6, 2, '90', '15-20', '4.9200,-74.0360', 7, 6);
+(1, 2, '45', '23-15 Apto 501', '4.7110,-74.0721', 8, 1),
+(2, 1, '72', '10-34 Casa 3', '4.8580,-74.0375', 9, 2),
+(3, 3, '127', '45-67 Local 2', '4.9250,-74.0315', 10, 3),
+(4, 2, '80', '12-45', '4.9180,-74.0307',11, 4),
+(5, 1, '50', '23-10', '4.9190,-74.0350',12, 5),
+(6, 2, '90', '15-20', '4.9200,-74.0360',13, 6);
 
 -- --------------------------------------------------------
 
@@ -452,10 +452,10 @@ CREATE TABLE `pedidos` (
 --
 
 INSERT INTO `pedidos` (`ID_Pedido`, `ID_Usuario`, `FeHor_Ped`, `ID_Estado`, `ID_Guia`, `fehor_pedi`) VALUES
-(1, 2, '2025-10-20 13:00:00', 4, 1, NULL),
-(2, 3, '2025-10-21 13:30:00', 3, 2, NULL),
-(3, 4, '2025-10-22 14:00:00', 2, 3, NULL),
-(4, 2, '2025-10-25 15:00:00', 1, NULL, NULL);
+(1, 8, '2025-10-20 13:00:00', 4, 1, NULL),
+(2, 9, '2025-10-21 13:30:00', 3, 2, NULL),
+(3, 10, '2025-10-22 14:00:00', 2, 3, NULL),
+(4, 11, '2025-10-25 15:00:00', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -595,12 +595,12 @@ CREATE TABLE `rol_usuario` (
 --
 
 INSERT INTO `rol_usuario` (`ID_Rol`, `ID_Usuario`, `estado`) VALUES
-(1, 2, b'1'),
-(1, 3, b'1'),
-(1, 4, b'1'),
-(1, 5, b'1'),
-(1, 6, b'1'),
-(1, 7, b'1'),
+(1, 8, b'1'),
+(1, 9, b'1'),
+(1, 10, b'1'),
+(1, 11, b'1'),
+(1, 12, b'1'),
+(1, 13, b'1'),
 (2, 1, b'1');
 
 -- --------------------------------------------------------
