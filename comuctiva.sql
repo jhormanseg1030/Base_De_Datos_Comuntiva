@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-10-2025 a las 22:50:06
+-- Tiempo de generación: 02-11-2025 a las 23:02:29
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -85,11 +85,11 @@ CREATE TABLE `carrito` (
 --
 
 INSERT INTO `carrito` (`ID_Carrito`, `ID_Usuario`, `cantidad`, `Fecha_Agre`) VALUES
-(1, 8, '3', '2025-10-26 20:30:00'),
-(2, 8, '5', '2025-10-26 20:32:00'),
-(3, 9, '10', '2025-10-27 15:00:00'),
-(4, 9, '2', '2025-10-27 15:05:00'),
-(5, 10, '5', '2025-10-27 15:10:00');
+(1, 2, '3', '2025-10-26 20:30:00'),
+(2, 2, '5', '2025-10-26 20:32:00'),
+(3, 3, '10', '2025-10-27 15:00:00'),
+(4, 4, '2', '2025-10-27 15:05:00'),
+(5, 5, '5', '2025-10-27 15:10:00');
 
 -- --------------------------------------------------------
 
@@ -112,13 +112,13 @@ CREATE TABLE `comentarios` (
 --
 
 INSERT INTO `comentarios` (`ID_Comentario`, `ID_Comp_Produc`, `ID_Usuario`, `Comentario`, `Fecha_Comentario`, `id_compra`, `id_producto`) VALUES
-(1, 1, 8, 'Excelente calidad, tomates muy frescos. Los recomiendo totalmente.', '2025-10-28 20:40:52', 0, 0),
-(2, 2, 8, 'La cebolla lleg?? en buen estado, aunque esperaba que fuera un poco m??s grande.', '2025-10-28 20:40:52', 0, 0),
-(3, 3, 8, 'Las lechugas estaban perfectas, muy frescas y crujientes.', '2025-10-28 20:40:52', 0, 0),
-(4, 4, 9, 'Frijol de muy buena calidad, bien limpio y sin piedras. Definitivamente volver?? a comprar.', '2025-10-28 20:40:52', 0, 0),
-(5, 5, 9, 'El arroz es de buena calidad, aunque el precio me pareci?? un poco elevado.', '2025-10-28 20:40:52', 0, 0),
-(6, 6, 10, 'Las papas criollas est??n deliciosas, ideales para fre??r.', '2025-10-28 20:40:52', 0, 0),
-(7, 7, 10, 'Zanahorias frescas y dulces, perfectas para ensaladas.', '2025-10-28 20:40:52', 0, 0);
+(1, 1, 2, 'Excelente calidad, tomates muy frescos. Los recomiendo totalmente.', '2025-10-28 20:40:52', 0, 0),
+(2, 2, 2, 'La cebolla lleg?? en buen estado, aunque esperaba que fuera un poco m??s grande.', '2025-10-28 20:40:52', 0, 0),
+(3, 3, 2, 'Las lechugas estaban perfectas, muy frescas y crujientes.', '2025-10-28 20:40:52', 0, 0),
+(4, 4, 3, 'Frijol de muy buena calidad, bien limpio y sin piedras. Definitivamente volver?? a comprar.', '2025-10-28 20:40:52', 0, 0),
+(5, 5, 3, 'El arroz es de buena calidad, aunque el precio me pareci?? un poco elevado.', '2025-10-28 20:40:52', 0, 0),
+(6, 6, 4, 'Las papas criollas est??n deliciosas, ideales para fre??r.', '2025-10-28 20:40:52', 0, 0),
+(7, 7, 5, 'Zanahorias frescas y dulces, perfectas para ensaladas.', '2025-10-28 20:40:52', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -127,7 +127,7 @@ INSERT INTO `comentarios` (`ID_Comentario`, `ID_Comp_Produc`, `ID_Usuario`, `Com
 --
 
 CREATE TABLE `compra` (
-  `Id_Compra` int(10) NOT NULL,
+  `ID_Compra` int(10) NOT NULL,
   `ID_TiPago` int(10) DEFAULT NULL,
   `total` double DEFAULT NULL,
   `Ref_Pago` varchar(30) NOT NULL,
@@ -140,7 +140,7 @@ CREATE TABLE `compra` (
 -- Volcado de datos para la tabla `compra`
 --
 
-INSERT INTO `compra` (`Id_Compra`, `ID_TiPago`, `total`, `Ref_Pago`, `Fec_com`, `ID_Pedido`, `id_ti_pago`) VALUES
+INSERT INTO `compra` (`ID_Compra`, `ID_TiPago`, `total`, `Ref_Pago`, `Fec_com`, `ID_Pedido`, `id_ti_pago`) VALUES
 (1, 6, 28500, 'NEQ-20251020-001', '2025-10-20 08:05:00', 1, 0),
 (2, 3, 160000, 'PSE-20251021-002', '2025-10-21 08:35:00', 2, 0),
 (3, 1, 66000, 'TC-20251022-003', '2025-10-22 09:05:00', 3, 0),
@@ -265,12 +265,12 @@ CREATE TABLE `direcciones` (
 --
 
 INSERT INTO `direcciones` (`ID_Direcc`, `ID_Vias`, `num`, `comple`, `Ubi_Geo`, `ID_Usuario`, `ID_Barrio`) VALUES
-(1, 2, '45', '23-15 Apto 501', '4.7110,-74.0721', 8, 1),
-(2, 1, '72', '10-34 Casa 3', '4.8580,-74.0375', 9, 2),
-(3, 3, '127', '45-67 Local 2', '4.9250,-74.0315', 10, 3),
-(4, 2, '80', '12-45', '4.9180,-74.0307',11, 4),
-(5, 1, '50', '23-10', '4.9190,-74.0350',12, 5),
-(6, 2, '90', '15-20', '4.9200,-74.0360',13, 6);
+(1, 2, '45', '23-15 Apto 501', '4.7110,-74.0721', 2, 1),
+(2, 1, '72', '10-34 Casa 3', '4.8580,-74.0375', 3, 2),
+(3, 3, '127', '45-67 Local 2', '4.9250,-74.0315', 4, 3),
+(4, 2, '80', '12-45', '4.9180,-74.0307', 5, 4),
+(5, 1, '50', '23-10', '4.9190,-74.0350', 6, 5),
+(6, 2, '90', '15-20', '4.9200,-74.0360', 7, 6);
 
 -- --------------------------------------------------------
 
@@ -452,10 +452,10 @@ CREATE TABLE `pedidos` (
 --
 
 INSERT INTO `pedidos` (`ID_Pedido`, `ID_Usuario`, `FeHor_Ped`, `ID_Estado`, `ID_Guia`, `fehor_pedi`) VALUES
-(1, 8, '2025-10-20 13:00:00', 4, 1, NULL),
-(2, 9, '2025-10-21 13:30:00', 3, 2, NULL),
-(3, 10, '2025-10-22 14:00:00', 2, 3, NULL),
-(4, 11, '2025-10-25 15:00:00', 1, NULL, NULL);
+(1, 2, '2025-11-02 19:58:08', 4, 1, NULL),
+(2, 3, '2025-11-02 19:58:10', 3, 2, NULL),
+(3, 4, '2025-11-02 19:58:12', 2, 3, NULL),
+(4, 5, '2025-11-02 19:58:15', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -595,12 +595,12 @@ CREATE TABLE `rol_usuario` (
 --
 
 INSERT INTO `rol_usuario` (`ID_Rol`, `ID_Usuario`, `estado`) VALUES
-(1, 8, b'1'),
-(1, 9, b'1'),
-(1, 10, b'1'),
-(1, 11, b'1'),
-(1, 12, b'1'),
-(1, 13, b'1'),
+(1, 2, b'1'),
+(1, 3, b'1'),
+(1, 4, b'1'),
+(1, 5, b'1'),
+(1, 6, b'1'),
+(1, 7, b'1'),
 (2, 1, b'1');
 
 -- --------------------------------------------------------
@@ -723,13 +723,14 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`ID_Usuario`, `NomUsu`, `apell1`, `apell2`, `tel1`, `tel2`, `ID_TipDocu`, `correo`, `NumDoc`, `password`, `nom_usu`, `num_doc`, `tel`) VALUES
-(1, 'Admin', 'Sistema', 'Principal', 3001111111, 3009999999, 1, 'admin@comuctiva.com', '22222222', '$2a$10$6SQFDsaGWz0MVH9D56E8T.5kOIEJ4P6giVBdQO9wAagae/GhY5QpG', NULL, NULL, NULL),
-(2, 'Ana', 'Rodr??guez', 'S??nchez', 3004444444, 3006666666, 1, 'ana@cliente.com', '55555555', '$2a$10$HvAot2lgMQVYzTCySPBk2OeXlHXGWsZIgIlYd1PO2PcXYX3u1OmGm', NULL, NULL, NULL),
-(3, 'Pedro', 'L??pez', 'Gonz??lez', 3005555555, 3005555555, 1, 'pedro@cliente.com', '66666666', '$2a$10$rZvqmF5Y5kF6x2ZMRZoMyeIVI1lrPn9R6y4KW4ZP1ybYHYwXpGQa', NULL, NULL, NULL),
-(4, 'Laura', 'Fern??ndez', 'Torres', 3006666666, 3004444444, 1, 'laura@cliente.com', '77777777', '$2a$10$rZvqmF5Y5kF6x2ZMRZoMyeIVI1lrPn9R6y4KW4ZP1ybYHYwXpGQa', NULL, NULL, NULL),
-(5, 'Juan', 'P??rez', 'G??mez', 3007777777, 3003333333, 1, 'juan@cliente.com', '11111111', '$2a$10$rZvqmF5Y5kF6x2ZMRZoMyeIVI1lrPn9R6y4KW4ZP1ybYHYwXpGQa', NULL, NULL, NULL),
-(6, 'Mar??a', 'Garc??a', 'L??pez', 3002222222, 3008888888, 1, 'maria@cliente.com', '33333333', '$2a$10$rZvqmF5Y5kF6x2ZMRZoMyeIVI1lrPn9R6y4KW4ZP1ybYHYwXpGQa', NULL, NULL, NULL),
-(7, 'Carlos', 'Mart??nez', 'P??rez', 3003333333, 3007777777, 1, 'carlos@cliente.com', '44444444', '$2a$10$rZvqmF5Y5kF6x2ZMRZoMyeIVI1lrPn9R6y4KW4ZP1ybYHYwXpGQa', NULL, NULL, NULL);
+(1, 'Admin', 'Sistema', 'Principal', 3001111111, 3009999999, 1, 'admin@comuctiva.com', '22222222', '$2a$10$Eyd3M/0N.k4/8B/iyzHe6O3LbygHtxiyB1d9j4JbRLrGoS18GTjL6', NULL, NULL, NULL),
+(2, 'Ana', 'Rodr??guez', 'S??nchez', 3004444444, 3006666666, 1, 'ana@cliente.com', '55555555', '$2a$10$VmMawJTRsP439qolyse0J.fLis1WTV2zQBxszc4kopu9HtEfzaAqa', NULL, NULL, NULL),
+(3, 'Pedro', 'L??pez', 'Gonz??lez', 3005555555, 3005555555, 1, 'pedro@cliente.com', '66666666', '$2a$10$6faiysJgSF55hZdgqDLFzOS9zWZi5GdrKzFWYhG7jyP4abhmHbGfC', NULL, NULL, NULL),
+(4, 'Laura', 'Fern??ndez', 'Torres', 3006666666, 3004444444, 1, 'laura@cliente.com', '77777777', '$2a$10$lZ1q70p/AjS49xgmrKOiU.DDobKTn4UWux4s/CnMIzD15DU7hAX92', NULL, NULL, NULL),
+(5, 'Juan', 'P??rez', 'G??mez', 3007777777, 3003333333, 1, 'juan@cliente.com', '11111111', '$2a$10$pGQXR0T07iE2A84B0jLZfevum/3gJgXb7ek2f5ORRDiZFXAlBQm/i', NULL, NULL, NULL),
+(6, 'Mar??a', 'Garc??a', 'L??pez', 3002222222, 3008888888, 1, 'maria@cliente.com', '33333333', '$2a$10$zmHj/n9nNjAKTpo9T7Ntl.ZjkT92.5bcYB9c2PPerlwck2z3r9QrO', NULL, NULL, NULL),
+(7, 'Carlos', 'Mart??nez', 'P??rez', 3003333333, 3007777777, 1, 'carlos@cliente.com', '44444444', '$2a$10$QZ8nwN4Ox9q9ko2GozyQc.0K3IAtL5/I437xvfx0n7b6o8ELoqKfi', NULL, NULL, NULL),
+(26, 'Clienteb', 'Pruebav', 'Prueba3', 234235234, 124325234, 1, 'clienteb@example.com', '9666666', '$2a$10$r4.3Ww70ky8H3kOi4TOuOO9PkcTa5FDsZpfi6i2m32kNo1ilSaAsi', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1111,7 +1112,7 @@ ALTER TABLE `unidad_medida`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `ID_Usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `ID_Usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `vias`
