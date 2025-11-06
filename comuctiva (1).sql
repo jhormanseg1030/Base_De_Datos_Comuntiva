@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-11-2025 a las 06:30:57
+-- Tiempo de generación: 06-11-2025 a las 15:48:28
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -132,19 +132,23 @@ CREATE TABLE `compra` (
   `total` double DEFAULT NULL,
   `Ref_Pago` varchar(30) NOT NULL,
   `Fec_com` datetime NOT NULL,
-  `ID_Pedido` int(10) DEFAULT NULL,
-  `id_ti_pago` int(11) NOT NULL
+  `ID_Pedido` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `compra`
 --
 
-INSERT INTO `compra` (`ID_Compra`, `ID_TiPago`, `total`, `Ref_Pago`, `Fec_com`, `ID_Pedido`, `id_ti_pago`) VALUES
-(1, 6, 28500, 'NEQ-20251020-001', '2025-10-20 08:05:00', 1, 0),
-(2, 3, 160000, 'PSE-20251021-002', '2025-10-21 08:35:00', 2, 0),
-(3, 1, 66000, 'TC-20251022-003', '2025-10-22 09:05:00', 3, 0),
-(4, 7, 32500, 'DAV-20251025-004', '2025-10-25 10:05:00', 4, 0);
+INSERT INTO `compra` (`ID_Compra`, `ID_TiPago`, `total`, `Ref_Pago`, `Fec_com`, `ID_Pedido`) VALUES
+(1, 6, 28500, 'NEQ-20251020-001', '2025-10-20 08:05:00', 1),
+(2, 3, 160000, 'PSE-20251021-002', '2025-10-21 08:35:00', 2),
+(3, 1, 66000, 'TC-20251022-003', '2025-10-22 09:05:00', 3),
+(4, 7, 32500, 'DAV-20251025-004', '2025-10-25 10:05:00', 4),
+(7, NULL, 326.5, 'REF-20251106-001', '2025-11-06 09:25:13', 1),
+(8, 1, 326.5, 'REF-20251106-001', '2025-11-06 09:27:21', 1),
+(9, 1, 326.5, 'REF-20251106-001', '2025-11-06 09:31:01', 1),
+(10, 1, 326.5, 'REF-20251106-001', '2025-11-06 09:33:37', 1),
+(11, 1, 326.5, 'REF-20251106-001', '2025-11-06 09:35:34', 1);
 
 -- --------------------------------------------------------
 
@@ -158,8 +162,6 @@ CREATE TABLE `comp_produc` (
   `ID_Producto` int(10) DEFAULT NULL,
   `cant` smallint(6) DEFAULT NULL,
   `valor` double DEFAULT NULL,
-  `compra_id` int(11) NOT NULL,
-  `producto_id` int(11) NOT NULL,
   `fecha_asignacion` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -167,16 +169,22 @@ CREATE TABLE `comp_produc` (
 -- Volcado de datos para la tabla `comp_produc`
 --
 
-INSERT INTO `comp_produc` (`ID_Com_Produc`, `ID_Compra`, `ID_Producto`, `cant`, `valor`, `compra_id`, `producto_id`, `fecha_asignacion`) VALUES
-(1, 1, 1, 5, 17500, 0, 0, NULL),
-(2, 1, 2, 3, 7500, 0, 0, NULL),
-(3, 1, 4, 2, 4000, 0, 0, NULL),
-(4, 2, 7, 10, 70000, 0, 0, NULL),
-(5, 2, 8, 20, 90000, 0, 0, NULL),
-(6, 3, 3, 10, 40000, 0, 0, NULL),
-(7, 3, 5, 5, 14000, 0, 0, NULL),
-(8, 3, 6, 4, 12000, 0, 0, NULL),
-(9, 4, 9, 5, 32500, 0, 0, NULL);
+INSERT INTO `comp_produc` (`ID_Com_Produc`, `ID_Compra`, `ID_Producto`, `cant`, `valor`, `fecha_asignacion`) VALUES
+(1, 1, 1, 5, 17500, NULL),
+(2, 1, 2, 3, 7500, NULL),
+(3, 1, 4, 2, 4000, NULL),
+(4, 2, 7, 10, 70000, NULL),
+(5, 2, 8, 20, 90000, NULL),
+(6, 3, 3, 10, 40000, NULL),
+(7, 3, 5, 5, 14000, NULL),
+(8, 3, 6, 4, 12000, NULL),
+(9, 4, 9, 5, 32500, NULL),
+(10, 9, 1, 2, 50, NULL),
+(11, 9, 2, 3, 75.5, NULL),
+(12, 10, 1, 2, 50, NULL),
+(13, 10, 2, 3, 75.5, NULL),
+(14, 11, 1, 2, 50, NULL),
+(15, 11, 2, 3, 75.5, NULL);
 
 -- --------------------------------------------------------
 
@@ -503,37 +511,40 @@ CREATE TABLE `producto` (
   `Descrip` varchar(50) DEFAULT NULL,
   `categoria` varchar(50) DEFAULT NULL,
   `ID_Usuario` int(11) NOT NULL,
-  `activo` tinyint(1) DEFAULT 1
+  `activo` tinyint(1) DEFAULT 1,
+  `estado` varchar(50) NOT NULL DEFAULT 'activo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `producto`
 --
 
-INSERT INTO `producto` (`ID_Producto`, `ID_Medida`, `nomprod`, `valor`, `cant`, `imagen`, `Descrip`, `categoria`, `ID_Usuario`, `activo`) VALUES
-(1, 2, 'Tomate Chonto', 3500, 100, 'tomate.jpg', 'Tomate fresco de la regi??n', NULL, 1, 1),
-(2, 2, 'Cebolla Cabezona', 2500, 80, 'cebolla.jpg', 'Cebolla de primera calidad', NULL, 1, 1),
-(3, 2, 'Papa Criolla', 4000, 150, 'papa.jpg', 'Papa criolla seleccionada', NULL, 1, 1),
-(4, 4, 'Lechuga Crespa', 2000, 60, 'lechuga.jpg', 'Lechuga fresca', NULL, 1, 1),
-(5, 2, 'Zanahoria', 2800, 90, 'zanahoria.jpg', 'Zanahoria fresca', NULL, 1, 1),
-(6, 4, 'Aguacate Hass', 3000, 50, 'aguacate.jpg', 'Aguacate Hass grande', NULL, 1, 1),
-(7, 2, 'Frijol Rojo', 7000, 200, 'frijol.jpg', 'Frijol rojo de primera', NULL, 1, 1),
-(8, 2, 'Arroz Blanco', 4500, 300, 'arroz.jpg', 'Arroz de alta calidad', NULL, 1, 1),
-(9, 2, 'Lenteja', 6500, 150, 'lenteja.jpg', 'Lenteja importada', NULL, 1, 1),
-(10, 2, 'Garbanzo', 8000, 100, 'garbanzo.jpg', 'Garbanzo premium', NULL, 1, 1),
-(11, 3, 'Arroz Bulto 50kg', 120000, 30, 'arroz_bulto.jpg', 'Bulto de arroz 50kg', NULL, 1, 1),
-(12, 5, 'Leche Entera', 3200, 80, 'leche.jpg', 'Leche fresca entera', NULL, 1, 1),
-(13, 4, 'Queso Campesino', 15000, 40, 'queso.jpg', 'Queso campesino artesanal', NULL, 1, 1),
-(14, 4, 'Yogurt Natural', 4500, 60, 'yogurt.jpg', 'Yogurt natural sin az??car', NULL, 1, 1),
-(15, 3, 'bananos', 250000, 50, 'bananos.jpg', 'bananos ricos :3', NULL, 1, 1),
-(16, 1, 'Bananos', 1500, 4, 'banano.jpg', 'asdawdqd', 'verduras', 1, 1),
-(17, 4, 'e32424', 13123, 14234, 'banano.jpg', 'asdafqf', 'frutas', 1, 1),
-(18, 2, 'moras', 20000, 30, 'morajas.jpg', 'deliciosas moras, saludables ', NULL, 1, 1),
-(19, 2, 'moras', 20000, 30, 'morajas.jpg', 'deliciosas moras, saludables ', NULL, 6, 1),
-(20, 1, 'manzanas verdes', 10000, 10, 'manzanas_verdes.jpg', 'manzanas verdes ricas y saludables :3', NULL, 1, 1),
-(21, 2, 'moras', 20000, 30, 'morajas.jpg', 'deliciosas moras, saludables ', NULL, 6, 1),
-(22, 2, 'moras', 20000, 30, 'morajas.jpg', 'deliciosas moras, saludables ', NULL, 6, 1),
-(23, 2, 'moras', 20000, 30, 'morajas.jpg', 'deliciosas moras, saludables ', NULL, 6, 1);
+INSERT INTO `producto` (`ID_Producto`, `ID_Medida`, `nomprod`, `valor`, `cant`, `imagen`, `Descrip`, `categoria`, `ID_Usuario`, `activo`, `estado`) VALUES
+(1, 2, 'Tomate Chonto', 3500, 100, 'tomate.jpg', 'Tomate fresco de la regi??n', NULL, 1, 1, 'activo'),
+(2, 2, 'Cebolla Cabezona', 2500, 80, 'cebolla.jpg', 'Cebolla de primera calidad', NULL, 1, 1, 'activo'),
+(3, 2, 'Papa Criolla', 4000, 150, 'papa.jpg', 'Papa criolla seleccionada', NULL, 1, 1, 'activo'),
+(4, 4, 'Lechuga Crespa', 2000, 60, 'lechuga.jpg', 'Lechuga fresca', NULL, 1, 1, 'activo'),
+(5, 2, 'Zanahoria', 2800, 90, 'zanahoria.jpg', 'Zanahoria fresca', NULL, 1, 1, 'activo'),
+(6, 4, 'Aguacate Hass', 3000, 50, 'aguacate.jpg', 'Aguacate Hass grande', NULL, 1, 1, 'activo'),
+(7, 2, 'Frijol Rojo', 7000, 200, 'frijol.jpg', 'Frijol rojo de primera', NULL, 1, 1, 'activo'),
+(8, 2, 'Arroz Blanco', 4500, 300, 'arroz.jpg', 'Arroz de alta calidad', NULL, 1, 1, 'activo'),
+(9, 2, 'Lenteja', 6500, 150, 'lenteja.jpg', 'Lenteja importada', NULL, 1, 1, 'activo'),
+(10, 2, 'Garbanzo', 8000, 100, 'garbanzo.jpg', 'Garbanzo premium', NULL, 1, 1, 'activo'),
+(11, 3, 'Arroz Bulto 50kg', 120000, 30, 'arroz_bulto.jpg', 'Bulto de arroz 50kg', NULL, 1, 1, 'activo'),
+(12, 5, 'Leche Entera', 3200, 80, 'leche.jpg', 'Leche fresca entera', NULL, 1, 1, 'activo'),
+(13, 4, 'Queso Campesino', 15000, 40, 'queso.jpg', 'Queso campesino artesanal', NULL, 1, 1, 'activo'),
+(14, 4, 'Yogurt Natural', 4500, 60, 'yogurt.jpg', 'Yogurt natural sin az??car', NULL, 1, 1, 'activo'),
+(15, 3, 'bananos', 250000, 50, 'bananos.jpg', 'bananos ricos :3', NULL, 1, 1, 'activo'),
+(16, 1, 'Bananos', 1500, 4, 'banano.jpg', 'asdawdqd', 'verduras', 1, 1, 'activo'),
+(17, 4, 'e32424', 13123, 14234, 'banano.jpg', 'asdafqf', 'frutas', 1, 1, 'activo'),
+(18, 2, 'moras', 20000, 30, 'morajas.jpg', 'deliciosas moras, saludables ', NULL, 1, 1, 'activo'),
+(19, 2, 'moras', 20000, 30, 'morajas.jpg', 'deliciosas moras, saludables ', NULL, 6, 1, 'activo'),
+(20, 1, 'manzanas verdes', 10000, 10, 'manzanas_verdes.jpg', 'manzanas verdes ricas y saludables :3', NULL, 1, 1, 'activo'),
+(21, 2, 'moras', 20000, 30, 'morajas.jpg', 'deliciosas moras, saludables ', NULL, 6, 1, 'activo'),
+(22, 2, 'moras', 20000, 30, 'morajas.jpg', 'deliciosas moras, saludables ', NULL, 6, 1, 'activo'),
+(23, 2, 'moras', 20000, 30, 'morajas.jpg', 'deliciosas moras, saludables ', NULL, 6, 1, 'activo'),
+(24, 3, 'moras', 20000, 30, 'morajas.jpg', 'deliciosas moras, xd ', 'frutas', 3, 1, 'activo'),
+(26, 2, 'moras', 20000, 30, 'morajas.jpg', 'deliciosas moras, saludables ', NULL, 3, 1, 'pendiente');
 
 -- --------------------------------------------------------
 
@@ -548,6 +559,13 @@ CREATE TABLE `produc_carri` (
   `cantidad` int(11) NOT NULL DEFAULT 1,
   `fecha_agre` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `produc_carri`
+--
+
+INSERT INTO `produc_carri` (`nomprod`, `carrito_id`, `producto_id`, `cantidad`, `fecha_agre`) VALUES
+('manzanas verdes', 3, 20, 8, '2025-11-06 02:52:02');
 
 -- --------------------------------------------------------
 
@@ -736,14 +754,14 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`ID_Usuario`, `NomUsu`, `apell1`, `apell2`, `tel1`, `tel2`, `ID_TipDocu`, `correo`, `NumDoc`, `password`, `nom_usu`, `num_doc`, `tel`) VALUES
-(1, 'Admin', 'Sistema', 'Principal', 3001111111, 3009999999, 1, 'admin@comuctiva.com', '22222222', '$2a$10$ryPvRoCzQZinPCk2FCQgW.IMmd6WUOVTZfSpf7LJVmlj.ZbtcWf6e', NULL, NULL, NULL),
+(1, 'Admin', 'Sistema', 'Principal', 3001111111, 3009999999, 1, 'admin@comuctiva.com', '22222222', '$2a$10$9DUy7rM8mPjcpcWIOt3DJedPw2v5jk5vzo2z6..bJHmUEGkVpdKiq', NULL, NULL, NULL),
 (2, 'Ana', 'Rodr??guez', 'S??nchez', 3004444444, 3006666666, 1, 'ana@cliente.com', '55555555', '$2a$10$VmMawJTRsP439qolyse0J.fLis1WTV2zQBxszc4kopu9HtEfzaAqa', NULL, NULL, NULL),
 (3, 'Pedro', 'L??pez', 'Gonz??lez', 3005555555, 3005555555, 1, 'pedro@cliente.com', '66666666', '$2a$10$6faiysJgSF55hZdgqDLFzOS9zWZi5GdrKzFWYhG7jyP4abhmHbGfC', NULL, NULL, NULL),
 (4, 'Laura', 'Fern??ndez', 'Torres', 3006666666, 3004444444, 1, 'laura@cliente.com', '77777777', '$2a$10$lZ1q70p/AjS49xgmrKOiU.DDobKTn4UWux4s/CnMIzD15DU7hAX92', NULL, NULL, NULL),
 (5, 'Juan', 'P??rez', 'G??mez', 3007777777, 3003333333, 1, 'juan@cliente.com', '11111111', '$2a$10$pGQXR0T07iE2A84B0jLZfevum/3gJgXb7ek2f5ORRDiZFXAlBQm/i', NULL, NULL, NULL),
 (6, 'Mar??a', 'Garc??a', 'L??pez', 3002222222, 3008888888, 1, 'maria@cliente.com', '33333333', '$2a$10$zmHj/n9nNjAKTpo9T7Ntl.ZjkT92.5bcYB9c2PPerlwck2z3r9QrO', NULL, NULL, NULL),
 (7, 'Carlos', 'Mart??nez', 'P??rez', 3003333333, 3007777777, 1, 'carlos@cliente.com', '44444444', '$2a$10$QZ8nwN4Ox9q9ko2GozyQc.0K3IAtL5/I437xvfx0n7b6o8ELoqKfi', NULL, NULL, NULL),
-(26, 'Clienteb', 'Pruebav', 'Prueba3', 234235234, 124325234, 1, 'clienteb@example.com', '9666666', '$2a$10$r4.3Ww70ky8H3kOi4TOuOO9PkcTa5FDsZpfi6i2m32kNo1ilSaAsi', NULL, NULL, NULL),
+(26, 'adso_2', 'adso_wo', 'wo', 5464848, 54687867, 2, 'adso_cli@gmail.com', '333333', '$2a$10$zqrh3ljZsQualPYl/1SFkuDErn4T2DFgfObrZKoer615GduwBbX66', NULL, NULL, NULL),
 (27, 'jhorman', 'fabian', 'mendez', 3114457308, 3114457308, 1, 'jhormansegura2012@gmail.com', '1030544484', '$2a$10$/nYRK2QhtQv4WS7Ox7KTvuj1iFFx.CI2SCNTKBzuoqYkrNEkXoQUO', NULL, NULL, NULL),
 (28, 'jhorman', 'fiquioequ', '22222222', 3114457308, 3234234, 3, 'jhormansegura2013@gmail.com', '1030', '$2a$10$ScSWoztsgF5IlcXAlgj5yOAhjJvzVwvpOwV43pkkUoaToBb0PFqd2', NULL, NULL, NULL),
 (29, 'ClienteA', 'Prueba', 'Prueba2', 3001111111, 3002222222, 1, 'clientea@example.com', '90000000', '$2a$10$eoot9DiunuzlvHRWnWFkhOZzG2ffBOVe6zOKU0MyRYJpqAKpI2Sv.', NULL, NULL, NULL);
@@ -1009,7 +1027,7 @@ ALTER TABLE `barr_vere`
 -- AUTO_INCREMENT de la tabla `carrito`
 --
 ALTER TABLE `carrito`
-  MODIFY `ID_Carrito` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID_Carrito` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `comentarios`
@@ -1021,13 +1039,13 @@ ALTER TABLE `comentarios`
 -- AUTO_INCREMENT de la tabla `compra`
 --
 ALTER TABLE `compra`
-  MODIFY `ID_Compra` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID_Compra` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `comp_produc`
 --
 ALTER TABLE `comp_produc`
-  MODIFY `ID_Com_Produc` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID_Com_Produc` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `departamento`
@@ -1087,13 +1105,13 @@ ALTER TABLE `obser`
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `ID_Pedido` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID_Pedido` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `ID_Producto` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `ID_Producto` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
