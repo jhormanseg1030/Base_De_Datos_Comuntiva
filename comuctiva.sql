@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-11-2025 a las 15:48:28
+-- Tiempo de generación: 09-11-2025 a las 00:34:57
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -189,6 +189,71 @@ INSERT INTO `comp_produc` (`ID_Com_Produc`, `ID_Compra`, `ID_Producto`, `cant`, 
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `config_fletes`
+--
+
+CREATE TABLE `config_fletes` (
+  `id_config` int(11) NOT NULL,
+  `tipo_vehiculo` enum('FURGON','VAN') NOT NULL,
+  `tarifa_base` decimal(12,2) NOT NULL,
+  `costo_km` decimal(12,4) NOT NULL,
+  `max_distancia_km` int(11) NOT NULL,
+  `capacidad_kg` int(11) NOT NULL,
+  `descripcion` varchar(200) DEFAULT NULL,
+  `seguro_pct` decimal(5,2) NOT NULL DEFAULT 0.00,
+  `iva_pct` decimal(5,2) NOT NULL DEFAULT 19.00,
+  `peaje_km` decimal(10,2) NOT NULL DEFAULT 0.00
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `config_fletes`
+--
+
+INSERT INTO `config_fletes` (`id_config`, `tipo_vehiculo`, `tarifa_base`, `costo_km`, `max_distancia_km`, `capacidad_kg`, `descripcion`, `seguro_pct`, `iva_pct`, `peaje_km`) VALUES
+(1, 'FURGON', 50000.00, 1500.0000, 500, 3000, 'Furgón estándar', 2.00, 19.00, 200.00),
+(2, 'VAN', 35000.00, 1100.0000, 400, 1500, 'Van urbana', 2.00, 19.00, 150.00);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cotizacion`
+--
+
+CREATE TABLE `cotizacion` (
+  `id_cotizacion` int(11) NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp(),
+  `producto` varchar(150) NOT NULL,
+  `peso_kg` decimal(10,2) NOT NULL,
+  `tipo_vehiculo` enum('FURGON','VAN') NOT NULL,
+  `origen` varchar(150) NOT NULL,
+  `destino` varchar(150) NOT NULL,
+  `distancia_km` decimal(10,2) NOT NULL,
+  `estado` enum('PENDIENTE','EN_PROCESO','COMPLETADO','RECHAZADO') NOT NULL DEFAULT 'PENDIENTE',
+  `detalles` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`detalles`)),
+  `total` decimal(12,2) NOT NULL,
+  `motivo_rechazo` varchar(255) DEFAULT NULL,
+  `id_transpor` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `cotizacion`
+--
+
+INSERT INTO `cotizacion` (`id_cotizacion`, `fecha`, `producto`, `peso_kg`, `tipo_vehiculo`, `origen`, `destino`, `distancia_km`, `estado`, `detalles`, `total`, `motivo_rechazo`, `id_transpor`) VALUES
+(1, '2025-11-08 20:59:30', 'Papa Criolla - 50 bultos', 2500.00, 'FURGON', 'Zipaquirá', 'Corabastos Bogotá', 45.00, 'COMPLETADO', '{\"tarifaBase\": 50000, \"costoKm\": 67500, \"seguro\": 2350, \"iva\": 22791, \"peaje\": 9000, \"subtotal\": 151641, \"total\": 151641}', 151641.00, NULL, 1),
+(2, '2025-11-08 20:59:30', 'Tomate Chonto - 80 canastillas', 1200.00, 'FURGON', 'Girardot', 'Corabastos Bogotá', 134.00, 'COMPLETADO', '{\"tarifaBase\": 50000, \"costoKm\": 201000, \"seguro\": 5020, \"iva\": 48603, \"peaje\": 26800, \"subtotal\": 331423, \"total\": 331423}', 331423.00, NULL, 1),
+(3, '2025-11-08 20:59:30', 'Plátano Hartón - 120 racimos', 1800.00, 'FURGON', 'Armero', 'Central Mayorista Medellín', 198.00, 'EN_PROCESO', '{\"tarifaBase\": 50000, \"costoKm\": 297000, \"seguro\": 6940, \"iva\": 67208, \"peaje\": 39600, \"subtotal\": 460748, \"total\": 460748}', 460748.00, NULL, 1),
+(4, '2025-11-08 20:59:30', 'Aguacate Hass - 30 canastillas', 450.00, 'VAN', 'La Mesa', 'Paloquemao Bogotá', 62.00, 'COMPLETADO', '{\"tarifaBase\": 35000, \"costoKm\": 68200, \"seguro\": 2064, \"iva\": 19990, \"peaje\": 12400, \"subtotal\": 137654, \"total\": 137654}', 137654.00, NULL, 1),
+(5, '2025-11-08 20:59:30', 'Cebolla Cabezona - 100 bultos', 3000.00, 'FURGON', 'Aquitania', 'Corabastos Bogotá', 186.00, 'PENDIENTE', '{\"tarifaBase\": 50000, \"costoKm\": 279000, \"seguro\": 6580, \"iva\": 63760, \"peaje\": 37200, \"subtotal\": 436540, \"total\": 436540}', 436540.00, NULL, 1),
+(6, '2025-11-08 20:59:30', 'Yuca - 60 bultos', 1500.00, 'VAN', 'Puerto López', 'Abastos Villavicencio', 28.00, 'COMPLETADO', '{\"tarifaBase\": 35000, \"costoKm\": 30800, \"seguro\": 1316, \"iva\": 12750, \"peaje\": 5600, \"subtotal\": 85466, \"total\": 85466}', 85466.00, NULL, 1),
+(7, '2025-11-08 20:59:30', 'Cilantro y Hierbas Aromáticas - 40 atados', 80.00, 'VAN', 'Chía', 'Paloquemao Bogotá', 35.00, 'EN_PROCESO', '{\"tarifaBase\": 35000, \"costoKm\": 38500, \"seguro\": 1470, \"iva\": 14244, \"peaje\": 7000, \"subtotal\": 96214, \"total\": 96214}', 96214.00, NULL, 1),
+(8, '2025-11-08 20:59:30', 'Limón Tahití - 50 canastillas', 750.00, 'VAN', 'Espinal', 'Corabastos Bogotá', 142.00, 'PENDIENTE', '{\"tarifaBase\": 35000, \"costoKm\": 156200, \"seguro\": 3824, \"iva\": 37054, \"peaje\": 28400, \"subtotal\": 260478, \"total\": 260478}', 260478.00, NULL, 1),
+(9, '2025-11-08 20:59:30', 'Zanahoria - 70 bultos', 1750.00, 'FURGON', 'Ventaquemada', 'Corabastos Bogotá', 168.00, 'COMPLETADO', '{\"tarifaBase\": 50000, \"costoKm\": 252000, \"seguro\": 6040, \"iva\": 58527, \"peaje\": 33600, \"subtotal\": 400167, \"total\": 400167}', 400167.00, NULL, 1),
+(10, '2025-11-08 20:59:30', 'Mango Tommy - 40 canastillas', 600.00, 'VAN', 'Mariquita', 'Corabastos Bogotá', 154.00, 'RECHAZADO', '{\"tarifaBase\": 35000, \"costoKm\": 169400, \"seguro\": 4088, \"iva\": 39602, \"peaje\": 30800, \"subtotal\": 278890, \"total\": 278890}', 278890.00, NULL, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `dep`
 --
 
@@ -312,7 +377,6 @@ INSERT INTO `estado` (`ID_Estado`, `estado`) VALUES
 
 CREATE TABLE `guia_de_envio` (
   `ID_Guia` int(10) NOT NULL,
-  `ID_Transpor` int(10) DEFAULT NULL,
   `Fec_Env` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `ID_Obser` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -321,23 +385,10 @@ CREATE TABLE `guia_de_envio` (
 -- Volcado de datos para la tabla `guia_de_envio`
 --
 
-INSERT INTO `guia_de_envio` (`ID_Guia`, `ID_Transpor`, `Fec_Env`, `ID_Obser`) VALUES
-(1, 1, '2025-10-20 13:30:00', 3),
-(2, 2, '2025-10-21 14:00:00', 5),
-(3, 1, '2025-10-22 15:15:00', 4);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `guia_envio`
---
-
-CREATE TABLE `guia_envio` (
-  `id_guia` int(11) NOT NULL,
-  `fec_env` varchar(50) DEFAULT NULL,
-  `id_obser` int(11) NOT NULL,
-  `id_transpor` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `guia_de_envio` (`ID_Guia`, `Fec_Env`, `ID_Obser`) VALUES
+(1, '2025-10-20 13:30:00', 3),
+(2, '2025-10-21 14:00:00', 5),
+(3, '2025-10-22 15:15:00', 4);
 
 -- --------------------------------------------------------
 
@@ -686,23 +737,21 @@ INSERT INTO `tip_doc` (`ID_TipDocu`, `Tipo`) VALUES
 --
 
 CREATE TABLE `transportadora` (
-  `Id_Transpor` int(10) NOT NULL,
-  `NombreT` varchar(30) NOT NULL,
-  `Logo` varchar(30) NOT NULL,
-  `telefono` bigint(20) NOT NULL,
-  `Correo` varchar(50) NOT NULL,
-  `Direcc` varchar(50) NOT NULL,
-  `Sitio_Web` varchar(50) NOT NULL
+  `id_transpor` int(11) NOT NULL,
+  `nombret` varchar(120) NOT NULL,
+  `logo` varchar(255) DEFAULT NULL,
+  `telefono` varchar(30) DEFAULT NULL,
+  `correo` varchar(150) DEFAULT NULL,
+  `direcc` varchar(180) DEFAULT NULL,
+  `sitio_web` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `transportadora`
 --
 
-INSERT INTO `transportadora` (`Id_Transpor`, `NombreT`, `Logo`, `telefono`, `Correo`, `Direcc`, `Sitio_Web`) VALUES
-(1, 'Servientrega', 'servientrega.png', 6016000000, 'info@servientrega.com', 'Calle 100 #10-20', 'www.servientrega.com'),
-(2, 'Coordinadora', 'coordinadora.png', 6017000000, 'info@coordinadora.com', 'Av. 68 #45-30', 'www.coordinadora.com'),
-(3, 'Deprisa', 'deprisa.png', 6018000000, 'contacto@deprisa.com', 'Cra 50 #12-34', 'www.deprisa.com');
+INSERT INTO `transportadora` (`id_transpor`, `nombret`, `logo`, `telefono`, `correo`, `direcc`, `sitio_web`) VALUES
+(1, 'Comuctiva Transporte Agrícola', 'comuctiva_logo.png', '3201234567', 'contacto@comuctiva.com', 'Km 5 Vía Principal - Zona Rural', 'www.comuctiva.com');
 
 -- --------------------------------------------------------
 
@@ -754,7 +803,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`ID_Usuario`, `NomUsu`, `apell1`, `apell2`, `tel1`, `tel2`, `ID_TipDocu`, `correo`, `NumDoc`, `password`, `nom_usu`, `num_doc`, `tel`) VALUES
-(1, 'Admin', 'Sistema', 'Principal', 3001111111, 3009999999, 1, 'admin@comuctiva.com', '22222222', '$2a$10$9DUy7rM8mPjcpcWIOt3DJedPw2v5jk5vzo2z6..bJHmUEGkVpdKiq', NULL, NULL, NULL),
+(1, 'Admin', 'Sistema', 'Principal', 3001111111, 3009999999, 1, 'admin@comuctiva.com', '22222222', '$2a$10$Y4pavg0s7L4YU9Q34VTZiO2vvuFWbjDAsnyoqa2QIUP.sVtBJr4mC', NULL, NULL, NULL),
 (2, 'Ana', 'Rodr??guez', 'S??nchez', 3004444444, 3006666666, 1, 'ana@cliente.com', '55555555', '$2a$10$VmMawJTRsP439qolyse0J.fLis1WTV2zQBxszc4kopu9HtEfzaAqa', NULL, NULL, NULL),
 (3, 'Pedro', 'L??pez', 'Gonz??lez', 3005555555, 3005555555, 1, 'pedro@cliente.com', '66666666', '$2a$10$6faiysJgSF55hZdgqDLFzOS9zWZi5GdrKzFWYhG7jyP4abhmHbGfC', NULL, NULL, NULL),
 (4, 'Laura', 'Fern??ndez', 'Torres', 3006666666, 3004444444, 1, 'laura@cliente.com', '77777777', '$2a$10$lZ1q70p/AjS49xgmrKOiU.DDobKTn4UWux4s/CnMIzD15DU7hAX92', NULL, NULL, NULL),
@@ -765,6 +814,40 @@ INSERT INTO `usuario` (`ID_Usuario`, `NomUsu`, `apell1`, `apell2`, `tel1`, `tel2
 (27, 'jhorman', 'fabian', 'mendez', 3114457308, 3114457308, 1, 'jhormansegura2012@gmail.com', '1030544484', '$2a$10$/nYRK2QhtQv4WS7Ox7KTvuj1iFFx.CI2SCNTKBzuoqYkrNEkXoQUO', NULL, NULL, NULL),
 (28, 'jhorman', 'fiquioequ', '22222222', 3114457308, 3234234, 3, 'jhormansegura2013@gmail.com', '1030', '$2a$10$ScSWoztsgF5IlcXAlgj5yOAhjJvzVwvpOwV43pkkUoaToBb0PFqd2', NULL, NULL, NULL),
 (29, 'ClienteA', 'Prueba', 'Prueba2', 3001111111, 3002222222, 1, 'clientea@example.com', '90000000', '$2a$10$eoot9DiunuzlvHRWnWFkhOZzG2ffBOVe6zOKU0MyRYJpqAKpI2Sv.', NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `vehiculo`
+--
+
+CREATE TABLE `vehiculo` (
+  `id_vehiculo` int(11) NOT NULL,
+  `id_transpor` int(11) NOT NULL,
+  `tipo_vehiculo` enum('FURGON','VAN') NOT NULL,
+  `nombre` varchar(120) NOT NULL,
+  `placa` varchar(15) NOT NULL,
+  `conductor` varchar(120) DEFAULT NULL,
+  `capacidad_kg` int(11) NOT NULL,
+  `estado` enum('DISPONIBLE','EN_RUTA','MANTENIMIENTO') NOT NULL DEFAULT 'DISPONIBLE',
+  `mantenimiento` tinyint(1) NOT NULL DEFAULT 0,
+  `ubicacion` varchar(150) DEFAULT NULL,
+  `viajes_mes` int(11) NOT NULL DEFAULT 0,
+  `ingresos_mes` decimal(12,2) NOT NULL DEFAULT 0.00,
+  `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `vehiculo`
+--
+
+INSERT INTO `vehiculo` (`id_vehiculo`, `id_transpor`, `tipo_vehiculo`, `nombre`, `placa`, `conductor`, `capacidad_kg`, `estado`, `mantenimiento`, `ubicacion`, `viajes_mes`, `ingresos_mes`, `fecha_creacion`) VALUES
+(1, 1, 'FURGON', 'Furgón Refrigerado 1', 'AGR001', 'Juan Martínez', 3500, 'MANTENIMIENTO', 0, 'Centro de Acopio Principal', 42, 15800000.00, '2025-11-08 20:58:11'),
+(2, 1, 'FURGON', 'Furgón Refrigerado 2', 'AGR002', 'Pedro Ramírez', 3500, 'EN_RUTA', 0, 'Ruta La Mesa - Bogotá', 38, 14200000.00, '2025-11-08 20:58:11'),
+(3, 1, 'VAN', 'Van Carga Seca 1', 'AGR003', 'María González', 1800, 'DISPONIBLE', 0, 'Centro de Acopio Principal', 35, 8900000.00, '2025-11-08 20:58:11'),
+(4, 1, 'VAN', 'Van Carga Seca 2', 'AGR004', 'Carlos Díaz', 1800, 'MANTENIMIENTO', 1, 'Taller Mecánico', 28, 7100000.00, '2025-11-08 20:58:11'),
+(5, 1, 'FURGON', 'Van Express Modificada', 'AGR005', 'Luis Hernández', 3000, 'DISPONIBLE', 0, 'Bogotá - Norte', 40, 10200000.00, '2025-11-08 20:58:11'),
+(6, 1, 'VAN', 'Van Express Modificada', 'AGR006', 'Luis Hernández', 1500, 'DISPONIBLE', 0, 'Bogotá - Norte', 40, 10200000.00, '2025-11-08 20:58:11');
 
 -- --------------------------------------------------------
 
@@ -839,6 +922,21 @@ ALTER TABLE `comp_produc`
   ADD KEY `FK_Producto` (`ID_Producto`);
 
 --
+-- Indices de la tabla `config_fletes`
+--
+ALTER TABLE `config_fletes`
+  ADD PRIMARY KEY (`id_config`),
+  ADD UNIQUE KEY `uk_config_tipo` (`tipo_vehiculo`);
+
+--
+-- Indices de la tabla `cotizacion`
+--
+ALTER TABLE `cotizacion`
+  ADD PRIMARY KEY (`id_cotizacion`),
+  ADD KEY `idx_cotizacion_estado` (`estado`),
+  ADD KEY `idx_cotizacion_transpor` (`id_transpor`);
+
+--
 -- Indices de la tabla `dep`
 --
 ALTER TABLE `dep`
@@ -882,15 +980,7 @@ ALTER TABLE `estado`
 --
 ALTER TABLE `guia_de_envio`
   ADD PRIMARY KEY (`ID_Guia`),
-  ADD KEY `FK_Transportadora` (`ID_Transpor`),
   ADD KEY `FK_Obser` (`ID_Obser`);
-
---
--- Indices de la tabla `guia_envio`
---
-ALTER TABLE `guia_envio`
-  ADD PRIMARY KEY (`id_guia`),
-  ADD KEY `FK_Transpor` (`id_transpor`);
 
 --
 -- Indices de la tabla `ingresos`
@@ -986,7 +1076,8 @@ ALTER TABLE `tip_doc`
 -- Indices de la tabla `transportadora`
 --
 ALTER TABLE `transportadora`
-  ADD PRIMARY KEY (`Id_Transpor`);
+  ADD PRIMARY KEY (`id_transpor`),
+  ADD UNIQUE KEY `idx_transportadora_correo` (`correo`);
 
 --
 -- Indices de la tabla `unidad_medida`
@@ -1000,6 +1091,15 @@ ALTER TABLE `unidad_medida`
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`ID_Usuario`),
   ADD UNIQUE KEY `UK_Usuario_TipDoc_NumDoc` (`ID_TipDocu`,`NumDoc`);
+
+--
+-- Indices de la tabla `vehiculo`
+--
+ALTER TABLE `vehiculo`
+  ADD PRIMARY KEY (`id_vehiculo`),
+  ADD UNIQUE KEY `uk_vehiculo_placa` (`placa`),
+  ADD KEY `idx_vehiculo_estado` (`estado`),
+  ADD KEY `idx_vehiculo_transpor` (`id_transpor`);
 
 --
 -- Indices de la tabla `vias`
@@ -1048,6 +1148,18 @@ ALTER TABLE `comp_produc`
   MODIFY `ID_Com_Produc` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
+-- AUTO_INCREMENT de la tabla `config_fletes`
+--
+ALTER TABLE `config_fletes`
+  MODIFY `id_config` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `cotizacion`
+--
+ALTER TABLE `cotizacion`
+  MODIFY `id_cotizacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT de la tabla `departamento`
 --
 ALTER TABLE `departamento`
@@ -1082,12 +1194,6 @@ ALTER TABLE `estado`
 --
 ALTER TABLE `guia_de_envio`
   MODIFY `ID_Guia` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT de la tabla `guia_envio`
---
-ALTER TABLE `guia_envio`
-  MODIFY `id_guia` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `ingresos`
@@ -1135,7 +1241,7 @@ ALTER TABLE `tip_doc`
 -- AUTO_INCREMENT de la tabla `transportadora`
 --
 ALTER TABLE `transportadora`
-  MODIFY `Id_Transpor` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_transpor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `unidad_medida`
@@ -1148,6 +1254,12 @@ ALTER TABLE `unidad_medida`
 --
 ALTER TABLE `usuario`
   MODIFY `ID_Usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT de la tabla `vehiculo`
+--
+ALTER TABLE `vehiculo`
+  MODIFY `id_vehiculo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `vias`
@@ -1194,6 +1306,12 @@ ALTER TABLE `comp_produc`
   ADD CONSTRAINT `FK_Producto` FOREIGN KEY (`ID_Producto`) REFERENCES `producto` (`ID_Producto`);
 
 --
+-- Filtros para la tabla `cotizacion`
+--
+ALTER TABLE `cotizacion`
+  ADD CONSTRAINT `fk_cotizacion_transportadora` FOREIGN KEY (`id_transpor`) REFERENCES `transportadora` (`id_transpor`);
+
+--
 -- Filtros para la tabla `direcciones`
 --
 ALTER TABLE `direcciones`
@@ -1205,14 +1323,7 @@ ALTER TABLE `direcciones`
 -- Filtros para la tabla `guia_de_envio`
 --
 ALTER TABLE `guia_de_envio`
-  ADD CONSTRAINT `FK_Obser` FOREIGN KEY (`ID_Obser`) REFERENCES `obser` (`ID_Obser`),
-  ADD CONSTRAINT `FK_Transportadora` FOREIGN KEY (`ID_Transpor`) REFERENCES `transportadora` (`Id_Transpor`);
-
---
--- Filtros para la tabla `guia_envio`
---
-ALTER TABLE `guia_envio`
-  ADD CONSTRAINT `FK_Transpor` FOREIGN KEY (`id_transpor`) REFERENCES `transportadora` (`Id_Transpor`);
+  ADD CONSTRAINT `FK_Obser` FOREIGN KEY (`ID_Obser`) REFERENCES `obser` (`ID_Obser`);
 
 --
 -- Filtros para la tabla `ingresos`
@@ -1231,6 +1342,12 @@ ALTER TABLE `muni`
 --
 ALTER TABLE `producto`
   ADD CONSTRAINT `fk_producto_usuario` FOREIGN KEY (`ID_Usuario`) REFERENCES `usuario` (`ID_Usuario`);
+
+--
+-- Filtros para la tabla `vehiculo`
+--
+ALTER TABLE `vehiculo`
+  ADD CONSTRAINT `fk_vehiculo_transportadora` FOREIGN KEY (`id_transpor`) REFERENCES `transportadora` (`id_transpor`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
