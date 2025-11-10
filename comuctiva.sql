@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-11-2025 a las 00:34:57
+-- Tiempo de generación: 10-11-2025 a las 18:55:17
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -571,10 +571,10 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`ID_Producto`, `ID_Medida`, `nomprod`, `valor`, `cant`, `imagen`, `Descrip`, `categoria`, `ID_Usuario`, `activo`, `estado`) VALUES
-(1, 2, 'Tomate Chonto', 3500, 100, 'tomate.jpg', 'Tomate fresco de la regi??n', NULL, 1, 1, 'activo'),
-(2, 2, 'Cebolla Cabezona', 2500, 80, 'cebolla.jpg', 'Cebolla de primera calidad', NULL, 1, 1, 'activo'),
-(3, 2, 'Papa Criolla', 4000, 150, 'papa.jpg', 'Papa criolla seleccionada', NULL, 1, 1, 'activo'),
-(4, 4, 'Lechuga Crespa', 2000, 60, 'lechuga.jpg', 'Lechuga fresca', NULL, 1, 1, 'activo'),
+(1, 2, 'Tomate Chonto', 3500, 100, '2e2c0f0a-6a15-4497-b2c2-c579eec39446_A.jpg', 'Tomate fresco de la region', NULL, 1, 1, 'activo'),
+(2, 2, 'Cebolla Cabezona', 2500, 80, '21e7ec14-69d9-46c9-bb2c-19f0c2557111_AIP (1).webp', 'Cebolla de primera calidad', NULL, 1, 1, 'activo'),
+(3, 2, 'Papa Criolla', 4500, 150, 'fd39f18d-1f8d-45d6-8a44-d4ab9cbf0833_X.jpg', 'Papa criolla seleccionada', NULL, 1, 1, 'activo'),
+(4, 2, 'Lechuga Crespa', 2000, 60, '5e038122-3ebc-452c-99de-ff087c733a4a_L.jpg', 'Lechuga fresca', NULL, 1, 1, 'activo'),
 (5, 2, 'Zanahoria', 2800, 90, 'zanahoria.jpg', 'Zanahoria fresca', NULL, 1, 1, 'activo'),
 (6, 4, 'Aguacate Hass', 3000, 50, 'aguacate.jpg', 'Aguacate Hass grande', NULL, 1, 1, 'activo'),
 (7, 2, 'Frijol Rojo', 7000, 200, 'frijol.jpg', 'Frijol rojo de primera', NULL, 1, 1, 'activo'),
@@ -584,7 +584,7 @@ INSERT INTO `producto` (`ID_Producto`, `ID_Medida`, `nomprod`, `valor`, `cant`, 
 (11, 3, 'Arroz Bulto 50kg', 120000, 30, 'arroz_bulto.jpg', 'Bulto de arroz 50kg', NULL, 1, 1, 'activo'),
 (12, 5, 'Leche Entera', 3200, 80, 'leche.jpg', 'Leche fresca entera', NULL, 1, 1, 'activo'),
 (13, 4, 'Queso Campesino', 15000, 40, 'queso.jpg', 'Queso campesino artesanal', NULL, 1, 1, 'activo'),
-(14, 4, 'Yogurt Natural', 4500, 60, 'yogurt.jpg', 'Yogurt natural sin az??car', NULL, 1, 1, 'activo'),
+(14, 4, 'Yogurt Natural', 4500, 60, '5e3039f6-8aaf-4711-b9bb-88a33df84c40_M.jpg', 'Yogurt natural sin azucar', NULL, 1, 1, 'activo'),
 (15, 3, 'bananos', 250000, 50, 'bananos.jpg', 'bananos ricos :3', NULL, 1, 1, 'activo'),
 (16, 1, 'Bananos', 1500, 4, 'banano.jpg', 'asdawdqd', 'verduras', 1, 1, 'activo'),
 (17, 4, 'e32424', 13123, 14234, 'banano.jpg', 'asdafqf', 'frutas', 1, 1, 'activo'),
@@ -803,7 +803,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`ID_Usuario`, `NomUsu`, `apell1`, `apell2`, `tel1`, `tel2`, `ID_TipDocu`, `correo`, `NumDoc`, `password`, `nom_usu`, `num_doc`, `tel`) VALUES
-(1, 'Admin', 'Sistema', 'Principal', 3001111111, 3009999999, 1, 'admin@comuctiva.com', '22222222', '$2a$10$Y4pavg0s7L4YU9Q34VTZiO2vvuFWbjDAsnyoqa2QIUP.sVtBJr4mC', NULL, NULL, NULL),
+(1, 'Admin', 'Sistema', 'Principal', 3001111111, 3009999999, 1, 'admin@comuctiva.com', '22222222', '$2a$10$VQI8s1GJHV5mmYIrbTdgr.YdyFKvg8aDRa6OzjY6sGJch5vPZhBHy', NULL, NULL, NULL),
 (2, 'Ana', 'Rodr??guez', 'S??nchez', 3004444444, 3006666666, 1, 'ana@cliente.com', '55555555', '$2a$10$VmMawJTRsP439qolyse0J.fLis1WTV2zQBxszc4kopu9HtEfzaAqa', NULL, NULL, NULL),
 (3, 'Pedro', 'L??pez', 'Gonz??lez', 3005555555, 3005555555, 1, 'pedro@cliente.com', '66666666', '$2a$10$6faiysJgSF55hZdgqDLFzOS9zWZi5GdrKzFWYhG7jyP4abhmHbGfC', NULL, NULL, NULL),
 (4, 'Laura', 'Fern??ndez', 'Torres', 3006666666, 3004444444, 1, 'laura@cliente.com', '77777777', '$2a$10$lZ1q70p/AjS49xgmrKOiU.DDobKTn4UWux4s/CnMIzD15DU7hAX92', NULL, NULL, NULL),
