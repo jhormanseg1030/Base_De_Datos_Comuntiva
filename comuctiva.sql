@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-11-2025 a las 00:34:57
+-- Tiempo de generación: 16-11-2025 a las 15:14:03
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -571,31 +571,24 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`ID_Producto`, `ID_Medida`, `nomprod`, `valor`, `cant`, `imagen`, `Descrip`, `categoria`, `ID_Usuario`, `activo`, `estado`) VALUES
-(1, 2, 'Tomate Chonto', 3500, 100, 'tomate.jpg', 'Tomate fresco de la regi??n', NULL, 1, 1, 'activo'),
-(2, 2, 'Cebolla Cabezona', 2500, 80, 'cebolla.jpg', 'Cebolla de primera calidad', NULL, 1, 1, 'activo'),
-(3, 2, 'Papa Criolla', 4000, 150, 'papa.jpg', 'Papa criolla seleccionada', NULL, 1, 1, 'activo'),
-(4, 4, 'Lechuga Crespa', 2000, 60, 'lechuga.jpg', 'Lechuga fresca', NULL, 1, 1, 'activo'),
-(5, 2, 'Zanahoria', 2800, 90, 'zanahoria.jpg', 'Zanahoria fresca', NULL, 1, 1, 'activo'),
-(6, 4, 'Aguacate Hass', 3000, 50, 'aguacate.jpg', 'Aguacate Hass grande', NULL, 1, 1, 'activo'),
-(7, 2, 'Frijol Rojo', 7000, 200, 'frijol.jpg', 'Frijol rojo de primera', NULL, 1, 1, 'activo'),
-(8, 2, 'Arroz Blanco', 4500, 300, 'arroz.jpg', 'Arroz de alta calidad', NULL, 1, 1, 'activo'),
-(9, 2, 'Lenteja', 6500, 150, 'lenteja.jpg', 'Lenteja importada', NULL, 1, 1, 'activo'),
-(10, 2, 'Garbanzo', 8000, 100, 'garbanzo.jpg', 'Garbanzo premium', NULL, 1, 1, 'activo'),
-(11, 3, 'Arroz Bulto 50kg', 120000, 30, 'arroz_bulto.jpg', 'Bulto de arroz 50kg', NULL, 1, 1, 'activo'),
-(12, 5, 'Leche Entera', 3200, 80, 'leche.jpg', 'Leche fresca entera', NULL, 1, 1, 'activo'),
-(13, 4, 'Queso Campesino', 15000, 40, 'queso.jpg', 'Queso campesino artesanal', NULL, 1, 1, 'activo'),
-(14, 4, 'Yogurt Natural', 4500, 60, 'yogurt.jpg', 'Yogurt natural sin az??car', NULL, 1, 1, 'activo'),
-(15, 3, 'bananos', 250000, 50, 'bananos.jpg', 'bananos ricos :3', NULL, 1, 1, 'activo'),
-(16, 1, 'Bananos', 1500, 4, 'banano.jpg', 'asdawdqd', 'verduras', 1, 1, 'activo'),
-(17, 4, 'e32424', 13123, 14234, 'banano.jpg', 'asdafqf', 'frutas', 1, 1, 'activo'),
-(18, 2, 'moras', 20000, 30, 'morajas.jpg', 'deliciosas moras, saludables ', NULL, 1, 1, 'activo'),
-(19, 2, 'moras', 20000, 30, 'morajas.jpg', 'deliciosas moras, saludables ', NULL, 6, 1, 'activo'),
-(20, 1, 'manzanas verdes', 10000, 10, 'manzanas_verdes.jpg', 'manzanas verdes ricas y saludables :3', NULL, 1, 1, 'activo'),
-(21, 2, 'moras', 20000, 30, 'morajas.jpg', 'deliciosas moras, saludables ', NULL, 6, 1, 'activo'),
-(22, 2, 'moras', 20000, 30, 'morajas.jpg', 'deliciosas moras, saludables ', NULL, 6, 1, 'activo'),
-(23, 2, 'moras', 20000, 30, 'morajas.jpg', 'deliciosas moras, saludables ', NULL, 6, 1, 'activo'),
-(24, 3, 'moras', 20000, 30, 'morajas.jpg', 'deliciosas moras, xd ', 'frutas', 3, 1, 'activo'),
-(26, 2, 'moras', 20000, 30, 'morajas.jpg', 'deliciosas moras, saludables ', NULL, 3, 1, 'pendiente');
+(1, 2, 'Tomate Chonto', 2500, 100, '29e43d56-a677-43fb-bca1-3b968ffeade8_A.jpg', 'Tomate fresco de la región', NULL, 1, 1, 'activo'),
+(2, 2, 'Cebolla Cabezona', 2500, 80, 'b64c8c64-e12c-4b70-9ae7-d0b5418a0ed0_AIP (1).webp', 'Cebolla de primera calidad', NULL, 1, 1, 'activo'),
+(3, 2, 'Papa Criolla', 4000, 150, '61086fb8-da58-45b8-8e53-18bee6329161_B.jpg', 'Papa criolla seleccionada y perfecta', NULL, 1, 1, 'activo'),
+(4, 4, 'Lechuga Crespa', 2000, 60, '5e41e116-128f-4758-b89c-cc6b84f91973_L.jpg', 'Lechuga fresca', NULL, 1, 1, 'activo'),
+(5, 2, 'Zanahoria', 2800, 90, 'fc0bc73e-2dfe-437c-b25f-f462f53f5529_C.jpg', 'Zanahoria fresca', NULL, 1, 1, 'activo'),
+(6, 4, 'Aguacate Hass', 3000, 50, '65f1ec7d-ca17-4527-bcad-c2eb130ed29c_D.jpg', 'Aguacate Hass grande', NULL, 1, 1, 'activo'),
+(7, 2, 'Frijol Rojo', 7000, 300, '777c25ae-170c-437e-9d56-2baffd839317_E.jpg', 'Frijol rojo de primera', NULL, 1, 1, 'activo'),
+(8, 2, 'Arroz Blanco', 4500, 300, '70096a62-0314-40b3-b230-60699d8c4cb8_F.jpg', 'Arroz de alta calidad', NULL, 1, 1, 'activo'),
+(9, 2, 'Lenteja', 6500, 150, 'bcd57e2e-5ba7-4c41-9467-cc39885d81e7_G.jpg', 'Lenteja importada', NULL, 1, 1, 'activo'),
+(10, 2, 'Garbanzo', 8000, 150, '6117264e-33fc-4346-b8c8-f3e0ffc02c38_H.jpg', 'Garbanzo premium', NULL, 1, 1, 'activo'),
+(11, 3, 'Arroz Bulto 50kg', 120000, 30, 'fb73072f-dd48-4736-b07b-94653d9725b8_I.webp', 'Bulto de arroz 50kg', NULL, 1, 1, 'activo'),
+(12, 5, 'Leche Entera', 3200, 80, '5cc52afe-7488-4114-9b57-49cec540ec67_J.jpg', 'Leche fresca entera', NULL, 1, 1, 'activo'),
+(13, 4, 'Queso Campesino', 15000, 40, '7e5b9235-fb01-41f9-923d-04f2fa74fdd0_K.webp', 'Queso campesino artesanal', NULL, 1, 1, 'activo'),
+(14, 4, 'Yogurt Natural', 4500, 60, 'b423a61b-2f26-46fc-8d8d-a9b53eadf937_M.jpg', 'Yogurt natural sin azucar', NULL, 1, 1, 'activo'),
+(29, 2, 'Bananos', 1500, 10, '8f962a9b-c676-4ba8-a949-90e19b12a3e1_banano.jpg', 'qwdqqe', 'frutas', 3, 1, 'pendiente'),
+(30, 2, 'Uvas', 2700, 12, 'fb4e9624-e74e-48fe-b174-15e98f8bf62f_R.jpg', 'uvas ricas', 'frutas', 3, 1, 'pendiente'),
+(31, 2, 'Tomates', 5000, 100, '963a2cb6-d610-4d46-9b43-9271776cb46e_T.jpg', 'Tomates ricos y frescos ', 'verduras', 3, 1, 'pendiente'),
+(32, 2, 'moras', 20000, 30, '4e25745b-e879-4c34-94ca-5643b3a82856_OIP.webp', 'deliciosas moras saludables ', '', 3, 1, 'pendiente');
 
 -- --------------------------------------------------------
 
@@ -803,7 +796,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`ID_Usuario`, `NomUsu`, `apell1`, `apell2`, `tel1`, `tel2`, `ID_TipDocu`, `correo`, `NumDoc`, `password`, `nom_usu`, `num_doc`, `tel`) VALUES
-(1, 'Admin', 'Sistema', 'Principal', 3001111111, 3009999999, 1, 'admin@comuctiva.com', '22222222', '$2a$10$Y4pavg0s7L4YU9Q34VTZiO2vvuFWbjDAsnyoqa2QIUP.sVtBJr4mC', NULL, NULL, NULL),
+(1, 'Admin', 'Sistema', 'Principal', 3001111111, 3009999999, 1, 'admin@comuctiva.com', '22222222', '$2a$10$p7UdTtCVWbjXox1sJ3FpmuN4PAMX004b2yJPZupnBSs6R.MHKrPEy', NULL, NULL, NULL),
 (2, 'Ana', 'Rodr??guez', 'S??nchez', 3004444444, 3006666666, 1, 'ana@cliente.com', '55555555', '$2a$10$VmMawJTRsP439qolyse0J.fLis1WTV2zQBxszc4kopu9HtEfzaAqa', NULL, NULL, NULL),
 (3, 'Pedro', 'L??pez', 'Gonz??lez', 3005555555, 3005555555, 1, 'pedro@cliente.com', '66666666', '$2a$10$6faiysJgSF55hZdgqDLFzOS9zWZi5GdrKzFWYhG7jyP4abhmHbGfC', NULL, NULL, NULL),
 (4, 'Laura', 'Fern??ndez', 'Torres', 3006666666, 3004444444, 1, 'laura@cliente.com', '77777777', '$2a$10$lZ1q70p/AjS49xgmrKOiU.DDobKTn4UWux4s/CnMIzD15DU7hAX92', NULL, NULL, NULL),
@@ -1217,7 +1210,7 @@ ALTER TABLE `pedidos`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `ID_Producto` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `ID_Producto` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
