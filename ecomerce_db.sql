@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-11-2025 a las 21:29:46
+-- Tiempo de generación: 27-11-2025 a las 23:02:11
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -44,10 +44,9 @@ INSERT INTO `carrito` (`id`, `cantidad`, `fecha_agregado`, `precio_unitario`, `p
 (3, 5, '2025-11-23 19:05:12.000000', 2500.00, 1, '22222222'),
 (4, 2, '2025-11-23 19:05:12.000000', 4500.00, 10, '22222222'),
 (5, 4, '2025-11-23 19:05:12.000000', 3000.00, 7, '33333333'),
-(6, 2, '2025-11-24 04:48:09.000000', 2500.00, 1, 'admin'),
-(7, 3, '2025-11-24 11:14:47.000000', 1800.00, 2, 'admin'),
 (8, 3, '2025-11-24 20:00:56.000000', 10000.00, 16, '11111111'),
-(9, 3, '2025-11-24 20:00:58.000000', 2500.00, 1, '11111111');
+(9, 3, '2025-11-24 20:00:58.000000', 2500.00, 1, '11111111'),
+(11, 2, '2025-11-26 21:55:41.000000', 10000.00, 16, 'admin');
 
 -- --------------------------------------------------------
 
@@ -67,14 +66,12 @@ CREATE TABLE `categorias` (
 --
 
 INSERT INTO `categorias` (`id`, `activo`, `descripcion`, `nombre`) VALUES
-(1, b'1', 'Frutas frescas y org??nicas de la regi??n', 'Frutas'),
+(1, b'1', 'Frutas frescas y orgánicas de la región', 'Frutas'),
 (2, b'1', 'Verduras y hortalizas cultivadas localmente', 'Verduras'),
-(3, b'1', 'Productos l??cteos frescos y derivados', 'L??cteos'),
+(3, b'1', 'Productos lácteos frescos y derivados', 'Lácteos'),
 (4, b'1', 'Granos, cereales y legumbres', 'Granos'),
 (5, b'1', 'Carnes frescas y procesadas', 'Carnes'),
-(6, b'0', 'Jugos naturales y bebidas', 'Bebidas'),
-(7, b'1', 'Productos artesanales locales', 'Artesanías'),
-(8, b'1', 'Pan y productos de panaderia', 'Panaderia');
+(9, b'1', 'Bebidas naturales y refrescos', 'Bebidas');
 
 -- --------------------------------------------------------
 
@@ -227,22 +224,22 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id`, `activo`, `descripcion`, `fecha_cosecha`, `fecha_publicacion`, `imagen_url`, `nombre`, `precio`, `stock`, `categoria_id`, `subcategoria_id`, `usuario_documento`) VALUES
-(1, b'1', 'Naranjas dulces y jugosas, perfectas para jugo. 1kg', '2024-11-15', '2025-11-23 19:05:12.000000', NULL, 'Naranjas Valencia', 2500.00, 100, 1, 1, '11111111'),
-(2, b'1', 'Limones frescos y ??cidos, ideales para cocinar. 500g', '2024-11-10', '2025-11-23 19:05:12.000000', NULL, 'Limones Tahit??', 1800.00, 80, 1, 1, '11111111'),
-(3, b'1', 'Mandarinas peque??as y dulces, sin semillas. 1kg', '2024-11-18', '2025-11-23 19:05:12.000000', NULL, 'Mandarinas Baby', 3200.00, 60, 1, 1, '11111111'),
-(4, b'1', 'Mangos maduros, dulces y arom??ticos. Unidad', '2024-11-12', '2025-11-23 19:05:12.000000', NULL, 'Mangos Tommy', 3500.00, 45, 1, 2, '11111111'),
-(5, b'1', 'Lechuga fresca hidrop??nica. Unidad', '2024-11-20', '2025-11-23 19:05:12.000000', NULL, 'Lechuga Crespa', 2000.00, 50, 2, 5, '22222222'),
+(1, b'1', 'Naranjas dulces,jugosas, y frescas perfectas para jugo. 1kg', '2024-11-15', '2025-11-23 19:05:12.000000', NULL, 'Naranjas Valencia', 2500.00, 100, 1, 1, '11111111'),
+(2, b'1', 'Limones frescos y ácidos, ideales para cocinar. 500g', '2024-11-10', '2025-11-23 19:05:12.000000', NULL, 'Limones Tahití', 1800.00, 80, 1, 1, '11111111'),
+(3, b'1', 'Mandarinas pequeñas y dulces, sin semillas. 1kg', '2024-11-18', '2025-11-23 19:05:12.000000', NULL, 'Mandarinas Baby', 3200.00, 60, 1, 1, '11111111'),
+(4, b'1', 'Mangos maduros, dulces y aromáticos. Unidad', '2024-11-12', '2025-11-23 19:05:12.000000', NULL, 'Mangos Tommy', 3500.00, 45, 1, 2, '11111111'),
+(5, b'1', 'Lechuga fresca hidropónica. Unidad', '2024-11-20', '2025-11-23 19:05:12.000000', NULL, 'Lechuga Crespa', 2000.00, 50, 2, 5, '22222222'),
 (6, b'1', 'Tomates maduros para ensaladas. 1kg', '2024-11-19', '2025-11-23 19:05:12.000000', NULL, 'Tomates Chonto', 2800.00, 70, 2, 8, '22222222'),
 (7, b'1', 'Papas criollas amarillas. 1kg', '2024-11-05', '2025-11-23 19:05:12.000000', NULL, 'Papas Criolla', 3000.00, 120, 2, 6, '22222222'),
 (8, b'1', 'Zanahorias frescas y crujientes. 500g', '2024-11-17', '2025-11-23 19:05:12.000000', NULL, 'Zanahorias', 1500.00, 90, 2, 6, '22222222'),
-(9, b'1', 'Br??coli fresco y verde. Unidad', '2024-11-21', '2025-11-23 19:05:12.000000', NULL, 'Br??coli', 2500.00, 40, 2, 7, '22222222'),
+(9, b'1', 'Brócoli fresco y verde. Unidad', '2024-11-21', '2025-11-23 19:05:12.000000', NULL, 'Brócoli', 2500.00, 40, 2, 7, '22222222'),
 (10, b'1', 'Fresas grandes y dulces. 250g', '2024-11-22', '2025-11-23 19:05:12.000000', NULL, 'Fresas Premium', 4500.00, 30, 1, 3, '33333333'),
 (11, b'1', 'Moras frescas de los Andes. 250g', '2024-11-22', '2025-11-23 19:05:12.000000', NULL, 'Moras Andinas', 5000.00, 25, 1, 3, '33333333'),
 (12, b'1', 'Manzanas rojas importadas. 1kg', '2024-10-28', '2025-11-23 19:05:12.000000', NULL, 'Manzanas Red', 4200.00, 55, 1, 4, '33333333'),
-(13, b'1', 'Pi??as dulces y jugosas. Unidad', '2024-11-08', '2025-11-23 19:05:12.000000', NULL, 'Pi??as Gold', 6000.00, 20, 1, 2, '33333333'),
+(13, b'1', 'Piñas dulces y jugosas. Unidad', '2024-11-08', '2025-11-23 19:05:12.000000', NULL, 'Piñas Gold', 6000.00, 20, 1, 2, '33333333'),
 (14, b'0', 'Aguacates maduros. Unidad', '2024-10-15', '2025-11-23 19:05:12.000000', NULL, 'Aguacates Hass', 2500.00, 0, 1, 2, '11111111'),
-(15, b'0', 'Piment??n rojo dulce. 500g', '2024-11-16', '2025-11-23 19:05:12.000000', NULL, 'Piment??n Rojo', 3500.00, 15, 2, 8, '22222222'),
-(16, b'1', 'sss', '2025-11-11', '2025-11-24 11:49:02.000000', 'http://localhost:8080/api/files/productos/f7ebadb3-f0bd-4b34-b18e-a42e2456fbb9.jpg', 'portatil', 10000.00, 20, 2, 6, '11111111');
+(15, b'0', 'Pimentón rojo dulce. 500g', '2024-11-16', '2025-11-23 19:05:12.000000', NULL, 'Pimentón Rojo', 3500.00, 15, 2, 8, '22222222'),
+(16, b'1', 'Café en grano de alta calidad, ideal para preparar bebidas frescas.', '2025-11-11', '2025-11-24 11:49:02.000000', 'http://localhost:8080/api/files/productos/f7ebadb3-f0bd-4b34-b18e-a42e2456fbb9.jpg', 'Café Grano', 10000.00, 20, 9, 16, '11111111');
 
 -- --------------------------------------------------------
 
@@ -291,19 +288,21 @@ CREATE TABLE `subcategorias` (
 --
 
 INSERT INTO `subcategorias` (`id`, `activo`, `descripcion`, `nombre`, `categoria_id`) VALUES
-(1, b'1', 'Naranjas, limones, mandarinas, toronjas', 'C??tricos', 1),
-(2, b'1', 'Mango, papaya, pi??a, maracuy??', 'Tropicales', 1),
-(3, b'1', 'Fresas, moras, ar??ndanos', 'Berries', 1),
-(4, b'1', 'Diferentes variedades de manzanas', 'Manzanas', 1),
+(1, b'1', 'Naranjas, limones, mandarinas, toronjas', 'Cítricos', 1),
+(2, b'1', 'Mango, papaya, piña, maracuyá', 'Tropicales', 1),
+(3, b'1', 'Fresas, moras, arándanos', 'Dulces', 1),
+(4, b'1', 'Diferentes variedades de manzanas', 'Frutos Secos', 1),
 (5, b'1', 'Lechuga, espinaca, acelga', 'Hortalizas de Hoja', 2),
-(6, b'1', 'Papa, yuca, zanahoria, remolacha', 'Tub??rculos', 2),
-(7, b'1', 'Br??coli, coliflor, repollo', 'Cruc??feras', 2),
-(8, b'1', 'Tomate, piment??n, berenjena', 'Solan??ceas', 2),
+(6, b'1', 'Papa, yuca, zanahoria, remolacha', 'Tuberículos', 2),
+(7, b'1', 'Brócoli, coliflor, repollo', 'Crucifíferas', 2),
+(8, b'1', 'Tomate, pimentón, berenjena', 'Solanácea', 2),
 (9, b'1', 'Leche entera, descremada, deslactosada', 'Leches', 3),
 (10, b'1', 'Quesos frescos y madurados', 'Quesos', 3),
 (11, b'1', 'Yogur natural, griego, con sabores', 'Yogures', 3),
 (12, b'1', 'Frijol, lenteja, garbanzo', 'Legumbres', 4),
-(13, b'1', 'Arroz, avena, quinua', 'Cereales', 4);
+(13, b'1', 'Granos secos y legumbres', 'Cereales', 4),
+(14, b'1', 'Hongos frescos y variados', 'Hongos', 2),
+(16, b'1', 'Diferentes tipos de granos', 'Granos', 9);
 
 -- --------------------------------------------------------
 
@@ -330,10 +329,11 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`numero_documento`, `activo`, `apellido`, `correo`, `direccion`, `fecha_registro`, `nombre`, `password`, `rol`, `telefono`, `tipo_documento`) VALUES
-('11111111', b'1', 'P??rez', 'juan@gmail.com', 'Carrera 10 #20-30', '2025-11-23 19:05:12.000000', 'Juan', '$2a$10$MKmQRNNOrXjra.KYhsu7JO9FVjsBlesYG0zQJnzni3nfHw2SXTVzK', 'USER', '3002222222', 'CC'),
-('22222222', b'1', 'Garc??a', 'maria@gmail.com', 'Calle 50 #15-25', '2025-11-23 19:05:12.000000', 'Mar??a', '$2a$10$MKmQRNNOrXjra.KYhsu7JO9FVjsBlesYG0zQJnzni3nfHw2SXTVzK', 'USER', '3003333333', 'CC'),
-('33333333', b'1', 'L??pez', 'carlos@gmail.com', 'Avenida 80 #45-60', '2025-11-23 19:05:12.000000', 'Carlos', '$2a$10$MKmQRNNOrXjra.KYhsu7JO9FVjsBlesYG0zQJnzni3nfHw2SXTVzK', 'USER', '3004444444', 'CE'),
-('44444444', b'0', 'Mart??nez', 'ana@gmail.com', 'Transversal 30 #12-18', '2025-11-23 19:05:12.000000', 'Ana', '$2a$10$MKmQRNNOrXjra.KYhsu7JO9FVjsBlesYG0zQJnzni3nfHw2SXTVzK', 'USER', '3005555555', 'CC'),
+('11111111', b'1', 'Pérez', 'juan@gmail.com', 'Carrera 10 #20-30', '2025-11-23 19:05:12.000000', 'Juan', '$2a$10$MKmQRNNOrXjra.KYhsu7JO9FVjsBlesYG0zQJnzni3nfHw2SXTVzK', 'USER', '3002222222', 'CC'),
+('12345678', b'1', 'Pérez', 'juan@example.com', 'Calle 123 #45-67', '2025-11-27 20:23:54.000000', 'Juan', '$2a$10$GuFUwjad8rVNwAUSEBNgx.HP6DItV33NFv.TC2qLKByqlwRHyOeWe', 'USER', '3009876543', 'CC'),
+('22222222', b'1', 'Maria', 'maria@gmail.com', 'Calle 50 #15-25', '2025-11-23 19:05:12.000000', 'Mar??a', '$2a$10$MKmQRNNOrXjra.KYhsu7JO9FVjsBlesYG0zQJnzni3nfHw2SXTVzK', 'USER', '3003333333', 'CC'),
+('33333333', b'1', 'López', 'carlos@gmail.com', 'Avenida 80 #45-60', '2025-11-23 19:05:12.000000', 'Carlos', '$2a$10$MKmQRNNOrXjra.KYhsu7JO9FVjsBlesYG0zQJnzni3nfHw2SXTVzK', 'USER', '3004444444', 'CE'),
+('44444444', b'0', 'Martínez', 'ana@gmail.com', 'Transversal 30 #12-18', '2025-11-23 19:05:12.000000', 'Ana', '$2a$10$MKmQRNNOrXjra.KYhsu7JO9FVjsBlesYG0zQJnzni3nfHw2SXTVzK', 'USER', '3005555555', 'CC'),
 ('99999999', b'1', 'Usuario', 'test999@test.com', 'Calle Test', '2025-11-24 03:13:02.000000', 'Test', '$2a$10$MKmQRNNOrXjra.KYhsu7JO9FVjsBlesYG0zQJnzni3nfHw2SXTVzK', 'USER', '3001234567', 'CC'),
 ('admin', b'1', 'Sistema', 'admin@ecomerce.com', 'Calle Admin 100', '2025-11-23 19:05:12.000000', 'Administrador', '$2a$10$MKmQRNNOrXjra.KYhsu7JO9FVjsBlesYG0zQJnzni3nfHw2SXTVzK', 'ADMIN', '3001111111', 'CC');
 
@@ -472,13 +472,13 @@ ALTER TABLE `ventas`
 -- AUTO_INCREMENT de la tabla `carrito`
 --
 ALTER TABLE `carrito`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `comentarios`
@@ -502,7 +502,7 @@ ALTER TABLE `detalle_pedido`
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -520,7 +520,7 @@ ALTER TABLE `promociones`
 -- AUTO_INCREMENT de la tabla `subcategorias`
 --
 ALTER TABLE `subcategorias`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `ventas`
