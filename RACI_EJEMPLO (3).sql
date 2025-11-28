@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-11-2025 a las 23:02:11
+-- Tiempo de generación: 28-11-2025 a las 23:14:54
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -46,7 +46,7 @@ INSERT INTO `carrito` (`id`, `cantidad`, `fecha_agregado`, `precio_unitario`, `p
 (5, 4, '2025-11-23 19:05:12.000000', 3000.00, 7, '33333333'),
 (8, 3, '2025-11-24 20:00:56.000000', 10000.00, 16, '11111111'),
 (9, 3, '2025-11-24 20:00:58.000000', 2500.00, 1, '11111111'),
-(11, 2, '2025-11-26 21:55:41.000000', 10000.00, 16, 'admin');
+(11, 3, '2025-11-26 21:55:41.000000', 10000.00, 16, 'admin');
 
 -- --------------------------------------------------------
 
@@ -224,22 +224,22 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id`, `activo`, `descripcion`, `fecha_cosecha`, `fecha_publicacion`, `imagen_url`, `nombre`, `precio`, `stock`, `categoria_id`, `subcategoria_id`, `usuario_documento`) VALUES
-(1, b'1', 'Naranjas dulces,jugosas, y frescas perfectas para jugo. 1kg', '2024-11-15', '2025-11-23 19:05:12.000000', NULL, 'Naranjas Valencia', 2500.00, 100, 1, 1, '11111111'),
-(2, b'1', 'Limones frescos y ácidos, ideales para cocinar. 500g', '2024-11-10', '2025-11-23 19:05:12.000000', NULL, 'Limones Tahití', 1800.00, 80, 1, 1, '11111111'),
-(3, b'1', 'Mandarinas pequeñas y dulces, sin semillas. 1kg', '2024-11-18', '2025-11-23 19:05:12.000000', NULL, 'Mandarinas Baby', 3200.00, 60, 1, 1, '11111111'),
-(4, b'1', 'Mangos maduros, dulces y aromáticos. Unidad', '2024-11-12', '2025-11-23 19:05:12.000000', NULL, 'Mangos Tommy', 3500.00, 45, 1, 2, '11111111'),
-(5, b'1', 'Lechuga fresca hidropónica. Unidad', '2024-11-20', '2025-11-23 19:05:12.000000', NULL, 'Lechuga Crespa', 2000.00, 50, 2, 5, '22222222'),
-(6, b'1', 'Tomates maduros para ensaladas. 1kg', '2024-11-19', '2025-11-23 19:05:12.000000', NULL, 'Tomates Chonto', 2800.00, 70, 2, 8, '22222222'),
-(7, b'1', 'Papas criollas amarillas. 1kg', '2024-11-05', '2025-11-23 19:05:12.000000', NULL, 'Papas Criolla', 3000.00, 120, 2, 6, '22222222'),
-(8, b'1', 'Zanahorias frescas y crujientes. 500g', '2024-11-17', '2025-11-23 19:05:12.000000', NULL, 'Zanahorias', 1500.00, 90, 2, 6, '22222222'),
-(9, b'1', 'Brócoli fresco y verde. Unidad', '2024-11-21', '2025-11-23 19:05:12.000000', NULL, 'Brócoli', 2500.00, 40, 2, 7, '22222222'),
-(10, b'1', 'Fresas grandes y dulces. 250g', '2024-11-22', '2025-11-23 19:05:12.000000', NULL, 'Fresas Premium', 4500.00, 30, 1, 3, '33333333'),
-(11, b'1', 'Moras frescas de los Andes. 250g', '2024-11-22', '2025-11-23 19:05:12.000000', NULL, 'Moras Andinas', 5000.00, 25, 1, 3, '33333333'),
-(12, b'1', 'Manzanas rojas importadas. 1kg', '2024-10-28', '2025-11-23 19:05:12.000000', NULL, 'Manzanas Red', 4200.00, 55, 1, 4, '33333333'),
-(13, b'1', 'Piñas dulces y jugosas. Unidad', '2024-11-08', '2025-11-23 19:05:12.000000', NULL, 'Piñas Gold', 6000.00, 20, 1, 2, '33333333'),
-(14, b'0', 'Aguacates maduros. Unidad', '2024-10-15', '2025-11-23 19:05:12.000000', NULL, 'Aguacates Hass', 2500.00, 0, 1, 2, '11111111'),
-(15, b'0', 'Pimentón rojo dulce. 500g', '2024-11-16', '2025-11-23 19:05:12.000000', NULL, 'Pimentón Rojo', 3500.00, 15, 2, 8, '22222222'),
-(16, b'1', 'Café en grano de alta calidad, ideal para preparar bebidas frescas.', '2025-11-11', '2025-11-24 11:49:02.000000', 'http://localhost:8080/api/files/productos/f7ebadb3-f0bd-4b34-b18e-a42e2456fbb9.jpg', 'Café Grano', 10000.00, 20, 9, 16, '11111111');
+(1, b'1', 'Naranjas dulces y jugosas, perfectas para jugo. 1kg', '2024-11-15', '2025-11-23 19:05:12.000000', 'http://localhost:8080/api/files/productos/23de8c9c-071a-4a59-86ed-172123d8a294.jpg', 'Naranjas Valencia', 2500.00, 100, 1, 1, '11111111'),
+(2, b'1', 'Limones frescos y ácidos, ideales para cocinar. 500g', '2024-11-10', '2025-11-23 19:05:12.000000', 'http://localhost:8080/api/files/productos/b3c1404f-372b-4013-9243-21ad01bb63f5.jpeg', 'Limones Tahití', 1800.00, 80, 1, 1, '11111111'),
+(3, b'1', 'Mandarinas pequeñas y dulces, sin semillas. 1kg', '2024-11-18', '2025-11-23 19:05:12.000000', 'http://localhost:8080/api/files/productos/0fad4be0-0f77-46ed-bbf5-2188cdcb1f3e.jpg', 'Mandarinas Baby', 3200.00, 60, 1, 1, '11111111'),
+(4, b'1', 'Mangos maduros, dulces y aromáticos. Unidad', '2024-11-12', '2025-11-23 19:05:12.000000', 'http://localhost:8080/api/files/productos/aeeaf1c0-9c80-4391-90b2-9f4b93a06dd0.jpeg', 'Mangos Tommy', 3500.00, 45, 1, 2, '11111111'),
+(5, b'1', 'Lechuga fresca hidropónica. Unidad', '2024-11-20', '2025-11-23 19:05:12.000000', 'http://localhost:8080/api/files/productos/8f8337ab-f18a-40e8-baea-0f84beca7711.png', 'Lechuga Crespa', 2000.00, 50, 2, 5, '22222222'),
+(6, b'1', 'Tomates maduros para ensaladas. 1kg', '2024-11-19', '2025-11-23 19:05:12.000000', 'http://localhost:8080/api/files/productos/5b2a9c95-93eb-4e15-a699-f0a6b3da2612.jpg', 'Tomates Chonto', 2800.00, 70, 2, 8, '22222222'),
+(7, b'1', 'Papas criollas amarillas. 1kg', '2024-11-05', '2025-11-23 19:05:12.000000', 'http://localhost:8080/api/files/productos/24927335-d163-419c-9d6f-64f124ae8894.jpg', 'Papas Criolla', 3000.00, 120, 2, 6, '22222222'),
+(8, b'1', 'Zanahorias frescas y crujientes. 500g', '2024-11-17', '2025-11-23 19:05:12.000000', 'http://localhost:8080/api/files/productos/8bc1aded-09ac-4f36-979a-70e95e2884d5.jpg', 'Zanahorias', 1500.00, 90, 2, 6, '22222222'),
+(9, b'1', 'Brócoli fresco y verde. Unidad', '2024-11-21', '2025-11-23 19:05:12.000000', 'http://localhost:8080/api/files/productos/0b51fc59-52e6-4129-ac4b-dcdfda9cf1e5.jpg', 'Brócoli', 2500.00, 40, 2, 7, '22222222'),
+(10, b'1', 'Fresas grandes y dulces. 250g', '2024-11-22', '2025-11-23 19:05:12.000000', 'http://localhost:8080/api/files/productos/45b3f1a0-b0ae-4f43-9a1f-9be7f3e3f0e3.webp', 'Fresas Premium', 4500.00, 30, 1, 3, '33333333'),
+(11, b'1', 'Moras frescas de los Andes. 250g', '2024-11-22', '2025-11-23 19:05:12.000000', 'http://localhost:8080/api/files/productos/abfcafae-7ab2-4f6a-a6c8-ea325ad159c6.jfif', 'Moras Andinas', 5000.00, 25, 1, 3, '33333333'),
+(12, b'1', 'Manzanas rojas importadas. 1kg', '2024-10-28', '2025-11-23 19:05:12.000000', 'http://localhost:8080/api/files/productos/829d6292-d14d-4183-a6e0-f2b830fba638.webp', 'Manzanas ', 20000.00, 55, 1, 4, '33333333'),
+(13, b'1', 'Piñas dulces y jugosas. Unidad', '2024-11-08', '2025-11-23 19:05:12.000000', 'http://localhost:8080/api/files/productos/f471dda5-6d53-442d-9630-fc629f9be3ae.jpg', 'Piñas Gold', 6000.00, 20, 1, 2, '33333333'),
+(14, b'0', 'Aguacates maduros. Unidad', '2024-10-15', '2025-11-23 19:05:12.000000', 'http://localhost:8080/api/files/productos/a0a20466-f0dd-4c51-bc27-1282a23ecb93.jfif', 'Aguacates Hass', 2500.00, 0, 1, 2, '11111111'),
+(15, b'0', 'Pimentón rojo dulce. 500g', '2024-11-16', '2025-11-23 19:05:12.000000', 'http://localhost:8080/api/files/productos/da09705f-9e9a-429b-91f8-a30acfa29836.jpg', 'Pimentón Rojo', 3500.00, 15, 2, 8, '22222222'),
+(16, b'1', 'Café en grano de alta calidad, ideal para preparar bebidas frescas.', '2025-11-11', '2025-11-24 11:49:02.000000', 'http://localhost:8080/api/files/productos/d0423770-f8c0-4af8-8d27-1e3c961ba54b.jfif', 'Café Grano', 10000.00, 20, 9, 16, '11111111');
 
 -- --------------------------------------------------------
 
@@ -330,8 +330,7 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`numero_documento`, `activo`, `apellido`, `correo`, `direccion`, `fecha_registro`, `nombre`, `password`, `rol`, `telefono`, `tipo_documento`) VALUES
 ('11111111', b'1', 'Pérez', 'juan@gmail.com', 'Carrera 10 #20-30', '2025-11-23 19:05:12.000000', 'Juan', '$2a$10$MKmQRNNOrXjra.KYhsu7JO9FVjsBlesYG0zQJnzni3nfHw2SXTVzK', 'USER', '3002222222', 'CC'),
-('12345678', b'1', 'Pérez', 'juan@example.com', 'Calle 123 #45-67', '2025-11-27 20:23:54.000000', 'Juan', '$2a$10$GuFUwjad8rVNwAUSEBNgx.HP6DItV33NFv.TC2qLKByqlwRHyOeWe', 'USER', '3009876543', 'CC'),
-('22222222', b'1', 'Maria', 'maria@gmail.com', 'Calle 50 #15-25', '2025-11-23 19:05:12.000000', 'Mar??a', '$2a$10$MKmQRNNOrXjra.KYhsu7JO9FVjsBlesYG0zQJnzni3nfHw2SXTVzK', 'USER', '3003333333', 'CC'),
+('22222222', b'1', 'García', 'maria@gmail.com', 'Calle 50 #15-25', '2025-11-23 19:05:12.000000', 'Maria', '$2a$10$MKmQRNNOrXjra.KYhsu7JO9FVjsBlesYG0zQJnzni3nfHw2SXTVzK', 'USER', '3003333333', 'CC'),
 ('33333333', b'1', 'López', 'carlos@gmail.com', 'Avenida 80 #45-60', '2025-11-23 19:05:12.000000', 'Carlos', '$2a$10$MKmQRNNOrXjra.KYhsu7JO9FVjsBlesYG0zQJnzni3nfHw2SXTVzK', 'USER', '3004444444', 'CE'),
 ('44444444', b'0', 'Martínez', 'ana@gmail.com', 'Transversal 30 #12-18', '2025-11-23 19:05:12.000000', 'Ana', '$2a$10$MKmQRNNOrXjra.KYhsu7JO9FVjsBlesYG0zQJnzni3nfHw2SXTVzK', 'USER', '3005555555', 'CC'),
 ('99999999', b'1', 'Usuario', 'test999@test.com', 'Calle Test', '2025-11-24 03:13:02.000000', 'Test', '$2a$10$MKmQRNNOrXjra.KYhsu7JO9FVjsBlesYG0zQJnzni3nfHw2SXTVzK', 'USER', '3001234567', 'CC'),
